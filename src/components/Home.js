@@ -6,13 +6,13 @@ import IconButton from '@mui/material/IconButton';
 export default function Home() {
 
   return (
-    <div className="flex flex-col w-[85%] h-[60vh] md:h-[80vh] gap-4 md:gap-5 justify-center border border-red-300 ">
+    <div className="flex flex-col w-[85%] h-[60vh] md:h-[90vh] gap-4 md:gap-5 justify-center border border-red-300 ">
       <div>
         <h3 className="text-xl md:text-3xl mb-2">
           Hello, I'm Victor.
         </h3>
         <h1 className="text-3xl md:text-5xl">
-          I'm a software engineer based in Melbourne, Victoria.
+          I'm a software engineer based in Melbourne.
         </h1>     
       </div>
 
