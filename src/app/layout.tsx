@@ -1,7 +1,14 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import Navbar from "./Navbar";
+import Navbar from "../components/Navbar";
+import { ThemeProvider } from "next-themes"
+import { Providers } from "./providers"
 import "./globals.css";
+
+export interface ColorMode{
+  font: string,
+  bg: string
+}
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -15,12 +22,15 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+
   return (
-    <html lang="en">
-      <body className={`${inter.className} flex justify-center`}>
-        <Navbar />
-        {children}
-      </body>
+    <html lang="en" suppressHydrationWarning>
+        <body className={`${inter.className} flex justify-center`}>
+          <Providers>
+            <Navbar />
+            {children}
+          </Providers>
+        </body>
     </html>
   );
 }
