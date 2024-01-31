@@ -62,7 +62,6 @@ export default function Navbar(): JSX.Element {
 	function handleScroll() {
 		const currentScrollPos = window.scrollY
 		if (currentScrollPos > prevScrollPos) {
-			console.log("check")
 			setVisible(false)
 		}
 		else {
@@ -80,7 +79,7 @@ export default function Navbar(): JSX.Element {
 	useEffect(() => { setTheme("light") }, [])
 
 	return (
-		<nav className={`bg-blend-overlay ${visible ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'} z-10 h-[15vh] transition ease-in-out delay-100 w-screen max-w-full flex justify-center fixed`}>
+		<nav className={`${visible ? 'opacity-100' : 'opacity-0 pointer-events-none'} z-10 h-[15vh] transition ease-in-out delay-100 w-screen max-w-full flex justify-center fixed`}>
 			<div className="flex w-[100%] md:w-[92%] justify-between items-center px-5 py-3">
 				<FormControlLabel
 					control={<MaterialUISwitch sx={{ m: 1 }} />}
@@ -98,9 +97,9 @@ export default function Navbar(): JSX.Element {
 
 				{/* DESKTOP */}
 				<div className="hidden md:flex justify-end gap-10 items-center">
-					<Link href="/" className={`${resolvedTheme === "light" ? "after:bg-black" : "after:bg-white"} underline-animation`}>Home</Link>
-					<Link href="/" className={`${resolvedTheme === "light" ? "after:bg-black" : "after:bg-white"} underline-animation`}>Projects</Link>
-					<Link href="/" className={`${resolvedTheme === "light" ? "after:bg-black" : "after:bg-white"} underline-animation`}>Contact Me</Link>
+					<Link href="/" className={`${resolvedTheme === "light" || !resolvedTheme ? "after:bg-black" : "after:bg-white"} underline-animation`}>Home</Link>
+					<Link href="/" className={`${resolvedTheme === "light" || !resolvedTheme ? "after:bg-black" : "after:bg-white"} underline-animation`}>Projects</Link>
+					<Link href="/" className={`${resolvedTheme === "light" || !resolvedTheme ? "after:bg-black" : "after:bg-white"} underline-animation`}>Contact Me</Link>
 				</div>
 			</div>
 		</nav>
