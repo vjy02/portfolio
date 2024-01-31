@@ -19,7 +19,7 @@ export default function Home(): JSX.Element {
         </h1>     
       </div>
 
-      <div className="flex w-[40%] md:w-[10%] justify-between">
+      <div className="flex w-[40%] md:w-[12.5%] justify-between">
       <IconButton aria-label="Github.com" onClick={() => window.open('https://github.com/vjy02')} sx={{ '&:hover': { backgroundColor: theme === 'dark' ? 'white' : 'black' }, '& .icon': { color: theme === 'dark' ? 'white' : 'black' }, '&:hover .icon': { color: theme === 'dark' ? 'black' : 'white' }}}>
 
             <GitHubIcon className="icon"/>

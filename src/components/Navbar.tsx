@@ -1,86 +1,108 @@
 "use client"
 import { styled } from '@mui/material/styles';
-import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
-import Switch, { SwitchProps } from '@mui/material/Switch';
-import Stack from '@mui/material/Stack';
+import Switch from '@mui/material/Switch';
 import { useTheme } from "next-themes";
-import {useEffect} from "react"
+import { useEffect, useState } from "react"
 import Link from "next/link";
+
 const MaterialUISwitch = styled(Switch)(({ theme }) => ({
 	width: 62,
 	height: 34,
 	padding: 7,
 	'& .MuiSwitch-switchBase': {
-	 margin: 1,
-	 padding: 0,
-	 transform: 'translateX(6px)',
-	 '&.Mui-checked': {
-		transform: 'translateX(22px)',
-		'& .MuiSwitch-thumb:before': {
-		 backgroundImage: `url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" height="20" width="20" viewBox="0 0 20 20"><path fill="${encodeURIComponent(
-			'#000',
-		 )}" d="M4.2 2.5l-.7 1.8-1.8.7 1.8.7.7 1.8.6-1.8L6.7 5l-1.9-.7-.6-1.8zm15 8.3a6.7 6.7 0 11-6.6-6.6 5.8 5.8 0 006.6 6.6z"/></svg>')`,
+		margin: 1,
+		padding: 0,
+		transform: 'translateX(6px)',
+		'&.Mui-checked': {
+			transform: 'translateX(22px)',
+			'& .MuiSwitch-thumb:before': {
+				backgroundImage: `url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" height="20" width="20" viewBox="0 0 20 20"><path fill="${encodeURIComponent(
+					'#000',
+				)}" d="M4.2 2.5l-.7 1.8-1.8.7 1.8.7.7 1.8.6-1.8L6.7 5l-1.9-.7-.6-1.8zm15 8.3a6.7 6.7 0 11-6.6-6.6 5.8 5.8 0 006.6 6.6z"/></svg>')`,
+			},
+			'& + .MuiSwitch-track': {
+				opacity: 1,
+				backgroundColor: "#4b4b4b"
+			},
 		},
-		'& + .MuiSwitch-track': {
-		 opacity: 1,
-		 backgroundColor: "#4b4b4b"
-		},
-	 },
 	},
 	'& .MuiSwitch-thumb': {
-	 backgroundColor: theme.palette.mode === 'dark' ? '#000' : '#fff',
-	 width: 32,
-	 height: 32,
-	 '&::before': {
-		content: "''",
-		position: 'absolute',
-		width: '100%',
-		height: '100%',
-		left: 0,
-		top: 0,
-		backgroundRepeat: 'no-repeat',
-		backgroundPosition: 'center',
-		backgroundImage: `url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" height="20" width="20" viewBox="0 0 20 20"><path fill="${encodeURIComponent(
-		 '#000',
-		)}" d="M9.305 1.667V3.75h1.389V1.667h-1.39zm-4.707 1.95l-.982.982L5.09 6.072l.982-.982-1.473-1.473zm10.802 0L13.927 5.09l.982.982 1.473-1.473-.982-.982zM10 5.139a4.872 4.872 0 00-4.862 4.86A4.872 4.872 0 0010 14.862 4.872 4.872 0 0014.86 10 4.872 4.872 0 0010 5.139zm0 1.389A3.462 3.462 0 0113.471 10a3.462 3.462 0 01-3.473 3.472A3.462 3.462 0 016.527 10 3.462 3.462 0 0110 6.528zM1.665 9.305v1.39h2.083v-1.39H1.666zm14.583 0v1.39h2.084v-1.39h-2.084zM5.09 13.928L3.616 15.4l.982.982 1.473-1.473-.982-.982zm9.82 0l-.982.982 1.473 1.473.982-.982-1.473-1.473zM9.305 16.25v2.083h1.389V16.25h-1.39z"/></svg>')`,
-	 },
+		backgroundColor: theme.palette.mode === 'dark' ? '#000' : '#fff',
+		width: 32,
+		height: 32,
+		'&::before': {
+			content: "''",
+			position: 'absolute',
+			width: '100%',
+			height: '100%',
+			left: 0,
+			top: 0,
+			backgroundRepeat: 'no-repeat',
+			backgroundPosition: 'center',
+			backgroundImage: `url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" height="20" width="20" viewBox="0 0 20 20"><path fill="${encodeURIComponent(
+				'#000',
+			)}" d="M9.305 1.667V3.75h1.389V1.667h-1.39zm-4.707 1.95l-.982.982L5.09 6.072l.982-.982-1.473-1.473zm10.802 0L13.927 5.09l.982.982 1.473-1.473-.982-.982zM10 5.139a4.872 4.872 0 00-4.862 4.86A4.872 4.872 0 0010 14.862 4.872 4.872 0 0014.86 10 4.872 4.872 0 0010 5.139zm0 1.389A3.462 3.462 0 0113.471 10a3.462 3.462 0 01-3.473 3.472A3.462 3.462 0 016.527 10 3.462 3.462 0 0110 6.528zM1.665 9.305v1.39h2.083v-1.39H1.666zm14.583 0v1.39h2.084v-1.39h-2.084zM5.09 13.928L3.616 15.4l.982.982 1.473-1.473-.982-.982zm9.82 0l-.982.982 1.473 1.473.982-.982-1.473-1.473zM9.305 16.25v2.083h1.389V16.25h-1.39z"/></svg>')`,
+		},
 	},
 	'& .MuiSwitch-track': {
-	 opacity: 1,
-	 backgroundColor: "#ccc",
-	 borderRadius: 20 / 2,
+		opacity: 1,
+		backgroundColor: "#ccc",
+		borderRadius: 20 / 2,
 	},
 }));
 
 
 
 export default function Navbar(): JSX.Element {
-  const { setTheme, resolvedTheme } = useTheme();
-  useEffect(()=>{setTheme("light")},[])
-  return (
-    <nav className="w-screen max-w-full flex justify-center fixed px-8 pt-8 z-50">
-      <div className="flex w-[100%] md:w-[92%] justify-between items-center px-5 py-3">
-		<FormControlLabel
-        control={<MaterialUISwitch sx={{ m: 1 }} />}
-		onClick={() => {
-			if (resolvedTheme === "light") {
-				setTheme("dark");
-			} else {
-				setTheme("light");
-			}}}
-        label=""
-      />
-        {/* MOBILE */}
-        <button className=" md:hidden"></button>
+	const [prevScrollPos, setPrevScrollPos] = useState(0);
+	const [visible, setVisible] = useState(true)
+	const { setTheme, resolvedTheme } = useTheme();
 
-        {/* DESKTOP */}
-        <div className="hidden md:flex justify-end gap-10 items-center">
-          <Link href="/" className={`${resolvedTheme === "light" ? "after:bg-black" : "after:bg-white"} underline-animation`}>Home</Link>
-          <Link href="/" className={`${resolvedTheme === "light" ? "after:bg-black" : "after:bg-white"} underline-animation`}>Projects</Link>
-          <Link href="/" className={`${resolvedTheme === "light" ? "after:bg-black" : "after:bg-white"} underline-animation`}>Contact Me</Link>
-        </div>
-      </div>
-    </nav>
-  );
+	function handleScroll() {
+		const currentScrollPos = window.scrollY
+		if (currentScrollPos > prevScrollPos) {
+			console.log("check")
+			setVisible(false)
+		}
+		else {
+			setVisible(true)
+		}
+		setPrevScrollPos(currentScrollPos)
+	}
+
+	useEffect(() => {
+		window.addEventListener('scroll', handleScroll);
+		return () => window.removeEventListener('scroll', handleScroll)
+	})
+
+	// Sets initial theme to light
+	useEffect(() => { setTheme("light") }, [])
+
+	return (
+		<nav className={`bg-blend-overlay ${visible ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'} z-10 h-[15vh] transition ease-in-out delay-100 w-screen max-w-full flex justify-center fixed`}>
+			<div className="flex w-[100%] md:w-[92%] justify-between items-center px-5 py-3">
+				<FormControlLabel
+					control={<MaterialUISwitch sx={{ m: 1 }} />}
+					onClick={() => {
+						if (resolvedTheme === "light") {
+							setTheme("dark");
+						} else {
+							setTheme("light");
+						}
+					}}
+					label=""
+				/>
+				{/* MOBILE */}
+				<button className=" md:hidden"></button>
+
+				{/* DESKTOP */}
+				<div className="hidden md:flex justify-end gap-10 items-center">
+					<Link href="/" className={`${resolvedTheme === "light" ? "after:bg-black" : "after:bg-white"} underline-animation`}>Home</Link>
+					<Link href="/" className={`${resolvedTheme === "light" ? "after:bg-black" : "after:bg-white"} underline-animation`}>Projects</Link>
+					<Link href="/" className={`${resolvedTheme === "light" ? "after:bg-black" : "after:bg-white"} underline-animation`}>Contact Me</Link>
+				</div>
+			</div>
+		</nav>
+	);
 }
