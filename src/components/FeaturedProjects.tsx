@@ -11,10 +11,10 @@ import {
 
 export function FeaturedProjects(): JSX.Element{
   return (
-    <Carousel className="w-full max-w-[85vw] md:max-w-[60vw] h-auto m-auto">
+    <Carousel className="w-full max-w-[85vw] md:max-w-[60vw]">
       <CarouselContent>
         {Array.from({ length: 5 }).map((_, index) => (
-          <CarouselItem key={index}>
+          <CarouselItem key={index} className="">
             <div className="p-1">
               <Card>
                 <CardContent className="flex aspect-square items-center justify-center p-6">

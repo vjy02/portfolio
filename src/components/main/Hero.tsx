@@ -9,7 +9,7 @@ import IconButton from '@mui/material/IconButton';
 export default function Home(): JSX.Element {
   const { theme } = useTheme();
   return (
-    <div className="flex flex-col w-[85vw] h-[60vh] md:h-[100vh] gap-4 md:gap-5 justify-center border ">
+    <div className="flex flex-col w-[85vw] h-[40vh] mt-16 md:mt-0 md:h-[100vh] gap-4 md:gap-5 justify-center">
       <div>
         <h3 className="text-xl md:text-3xl mb-2">
           Hello, my name is Victor.
