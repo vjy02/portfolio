@@ -79,8 +79,8 @@ export default function Navbar(): JSX.Element {
 	useEffect(() => { setTheme("light") }, [])
 
 	return (
-		<nav className={`${visible ? 'opacity-100' : 'opacity-0 pointer-events-none'} z-10 h-[15vh] transition ease-in-out delay-100 w-screen max-w-full flex justify-center fixed`}>
-			<div className="flex w-[100%] md:w-[92%] justify-between items-center px-5 py-3">
+		<nav className={`${visible ? 'opacity-100' : 'opacity-0 pointer-events-none'} ${resolvedTheme === 'light' ? 'bg-white' : 'bg-black'} z-10 h-[15vh] transition ease-in-out delay-100 w-screen max-w-full flex justify-center items-center fixed`}>
+			<div className="flex w-[100%] md:w-[92%] justify-between items-center pl-5 md:pl-0">
 				<FormControlLabel
 					control={<MaterialUISwitch sx={{ m: 1 }} />}
 					onClick={() => {

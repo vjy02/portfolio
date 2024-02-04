@@ -20,21 +20,16 @@ export default function Home(): JSX.Element {
       </div>
 
       <div className="flex w-[40%] md:w-[12.5%] justify-between">
-      <IconButton aria-label="Github.com" onClick={() => window.open('https://github.com/vjy02')} sx={{ '&:hover': { backgroundColor: theme === 'dark' ? 'white' : 'black' }, '& .icon': { color: theme === 'dark' ? 'white' : 'black' }, '&:hover .icon': { color: theme === 'dark' ? 'black' : 'white' }}}>
-
+        <IconButton aria-label="Github.com" onClick={() => window.open('https://github.com/vjy02')} sx={{ '&:hover': { backgroundColor: theme === 'dark' ? 'white' : 'black' }, '& .icon': { color: theme === 'dark' ? 'white' : 'black' }, '&:hover .icon': { color: theme === 'dark' ? 'black' : 'white' }}}>
             <GitHubIcon className="icon"/>
         </IconButton>
 
         <IconButton aria-label="Linkedin.com" onClick={() => window.open('https://www.linkedin.com/in/victoryoshida02/')} sx={{ '&:hover': { backgroundColor: theme === 'dark' ? 'white' : 'black' }, '& .icon': { color: theme === 'dark' ? 'white' : 'black' }, '&:hover .icon': { color: theme === 'dark' ? 'black' : 'white' }}}>
-
             <LinkedInIcon className="icon"/>
-
         </IconButton>
 
         <IconButton sx={{ '&:hover': { backgroundColor: theme === 'dark' ? 'white' : 'black' }, '& .icon': { color: theme === 'dark' ? 'white' : 'black' }, '&:hover .icon': { color: theme === 'dark' ? 'black' : 'white' }}} >
-
             <EmailIcon className="icon"/>
-
         </IconButton>
       </div>
 
