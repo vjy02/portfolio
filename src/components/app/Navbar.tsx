@@ -86,24 +86,18 @@ export default function Navbar(): JSX.Element {
 	}
 
 	return (
-		<nav className={`${visible ? 'opacity-100' : 'opacity-0 pointer-events-none'} ${resolvedTheme === 'light' ? 'bg-white' : 'bg-black'} z-10 h-[15vh] transition ease-in-out delay-100 w-screen max-w-full flex justify-center items-center fixed`}>
-			<div className="flex w-[100%] md:w-[92%] justify-between items-center pl-5 md:pl-0">
+		<nav className={`${visible ? 'opacity-100' : 'opacity-0 pointer-events-none'} z-10 h-[12vh] transition ease-in-out delay-100 w-screen max-w-full flex justify-center items-center fixed`}>
+			<div className="flex w-[100%] md:w-[97%] justify-between items-center pl-5 md:pl-0">
 				<FormControlLabel
 					control={<MaterialUISwitch sx={{ m: 1 }} />}
-					onClick={() => {
-						if (resolvedTheme === "light") {
-							setTheme("dark");
-						} else {
-							setTheme("light");
-						}
-					}}
+					onClick={() => {setTheme(resolvedTheme === "light" ? "dark" : "light")}}
 					label=""
 				/>
 				{/* MOBILE */}
 				<button className=" md:hidden"></button>
 
 				{/* DESKTOP */}
-				<div className="hidden md:flex justify-end gap-10 items-center">
+				<div className="hidden md:flex justify-between gap-10 items-center">
 					<Link href="/" className={`${resolvedTheme === "light" || !resolvedTheme ? "after:bg-black" : "after:bg-white"} underline-animation`}>Home</Link>
 					<Link href="/" className={`${resolvedTheme === "light" || !resolvedTheme ? "after:bg-black" : "after:bg-white"} underline-animation`}>Projects</Link>
 					<Link href="/" className={`${resolvedTheme === "light" || !resolvedTheme ? "after:bg-black" : "after:bg-white"} underline-animation`}>Contact Me</Link>
