@@ -58,6 +58,21 @@ export default function Navbar(): JSX.Element {
 	const [prevScrollPos, setPrevScrollPos] = useState(0);
 	const [visible, setVisible] = useState(true)
 	const { setTheme, resolvedTheme } = useTheme();
+	const [mounted, setMounted] = useState(false);
+
+	useEffect(() => {
+	  setMounted(true)
+	}, []);
+	
+	useEffect(() => {
+		window.addEventListener('scroll', handleScroll);
+		return () => window.removeEventListener('scroll', handleScroll)
+	})
+
+	// Sets initial theme to light
+	useEffect(() => { setTheme("light") }, [])
+
+	if (!mounted) return <></>;
 
 	function handleScroll() {
 		const currentScrollPos = window.scrollY
@@ -69,14 +84,6 @@ export default function Navbar(): JSX.Element {
 		}
 		setPrevScrollPos(currentScrollPos)
 	}
-
-	useEffect(() => {
-		window.addEventListener('scroll', handleScroll);
-		return () => window.removeEventListener('scroll', handleScroll)
-	})
-
-	// Sets initial theme to light
-	useEffect(() => { setTheme("light") }, [])
 
 	return (
 		<nav className={`${visible ? 'opacity-100' : 'opacity-0 pointer-events-none'} ${resolvedTheme === 'light' ? 'bg-white' : 'bg-black'} z-10 h-[15vh] transition ease-in-out delay-100 w-screen max-w-full flex justify-center items-center fixed`}>

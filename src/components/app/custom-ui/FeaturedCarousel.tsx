@@ -9,9 +9,9 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel"
 
-export function FeaturedProjects(): JSX.Element{
+export function FeaturedCarousel(): JSX.Element{
   return (
-    <Carousel className="w-full max-w-[85vw] md:max-w-[60vw]">
+    <Carousel className="w-[85vw] md:max-w-[60vw]">
       <CarouselContent>
         {Array.from({ length: 5 }).map((_, index) => (
           <CarouselItem key={index} className="">

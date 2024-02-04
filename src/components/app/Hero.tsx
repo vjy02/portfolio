@@ -9,7 +9,7 @@ import IconButton from '@mui/material/IconButton';
 export default function Home(): JSX.Element {
   const { theme } = useTheme();
   return (
-    <div className="flex flex-col w-[85vw] h-[40vh] mt-16 md:mt-0 md:h-[100vh] gap-4 md:gap-5 justify-center">
+    <div className="flex flex-col w-[85vw] min-h-[30vh] md:min-h-[100vh] md:h-[100vh] mt-[15vh] md:mt-0 gap-4 md:gap-5 justify-center">
       <div>
         <h3 className="text-xl md:text-3xl mb-2">
           Hello, my name is Victor.
@@ -19,7 +19,7 @@ export default function Home(): JSX.Element {
         </h1>     
       </div>
 
-      <div className="flex w-[40%] md:w-[12.5%] justify-between">
+      <div className="flex w-[40%] md:w-[11%] justify-between">
         <IconButton aria-label="Github.com" onClick={() => window.open('https://github.com/vjy02')} sx={{ '&:hover': { backgroundColor: theme === 'dark' ? 'white' : 'black' }, '& .icon': { color: theme === 'dark' ? 'white' : 'black' }, '&:hover .icon': { color: theme === 'dark' ? 'black' : 'white' }}}>
             <GitHubIcon className="icon"/>
         </IconButton>

@@ -1,10 +1,10 @@
-import Hero from "../components/main/Hero"
-import Featured from "../components/main/Featured"
-import ContactMe from "../components/main/ContactMe"
+import Hero from "../components/app/Hero"
+import Featured from "../components/app/Featured"
+import ContactMe from "../components/app/ContactMe"
 
 export default function Home() {
   return (
-  <div className="flex flex-col">
+  <div className="flex flex-col items-center">
     <Hero />
     <Featured />
     <ContactMe />
