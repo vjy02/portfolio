@@ -14,12 +14,12 @@ import Image from "next/image"
 import culinaryAI from "../../../img/culinaryAI.png"
 
 export function FeaturedCarousel(): JSX.Element{
-  let [current, setCurrent] = useState(0)
-  let isMobile = window.innerWidth <= 768;
-  useEffect(()=>{
-    isMobile = window.innerWidth <= 768
-  },[window.innerWidth])
+  const [isMobile, setIsMobile] = useState(false);
 
+  useEffect(() => {
+    setIsMobile(window.innerWidth <= 768);
+  }, []);
+  
   return (
     <Carousel className="w-[85vw] md:max-w-[60vw] pointer-events-none md:pointer-events-auto" orientation={isMobile ? "vertical" : "horizontal"}>
       <CarouselContent>
