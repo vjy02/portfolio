@@ -59,7 +59,9 @@ export default function ContactForm() {
     if (!res.ok) {
       throw new Error("Failed to send email!");
     }
-    console.log(values)
+    else{
+      alert("Message sent. thanks for reaching out!")
+    }
   }
 
 	if (!mounted) return <></>
