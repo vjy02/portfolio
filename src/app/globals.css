@@ -21,8 +21,8 @@
     transition: opacity 300ms, transform 300ms;
 }
 
-a:hover::after,
-a:focus::after {
+div:hover::after,
+div:focus::after {
   opacity: 1;
   transform: translate3d(0, 0.2em, 0);
 }

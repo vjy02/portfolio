@@ -4,7 +4,6 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import Switch from '@mui/material/Switch';
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react"
-import Link from "next/link";
 
 const MaterialUISwitch = styled(Switch)(({ theme }) => ({
 	width: 62,
@@ -62,15 +61,14 @@ export default function Navbar(): JSX.Element {
 
 	useEffect(() => {
 	  setMounted(true)
-	}, []);
+	  setTheme("light")
+	}, [setTheme]);
 	
 	useEffect(() => {
 		window.addEventListener('scroll', handleScroll);
 		return () => window.removeEventListener('scroll', handleScroll)
 	})
 
-	// Sets initial theme to light
-	useEffect(() => { setTheme("light") }, [])
 
 	if (!mounted) return <></>;
 
@@ -83,6 +81,11 @@ export default function Navbar(): JSX.Element {
 			setVisible(true)
 		}
 		setPrevScrollPos(currentScrollPos)
+	}
+
+	const scrolltoHash = function (element_id: string) {
+		const element = document.getElementById(element_id)
+		element?.scrollIntoView({ behavior: "smooth", block: "end", inline: "nearest" });
 	}
 
 	return (
@@ -98,9 +101,9 @@ export default function Navbar(): JSX.Element {
 
 				{/* DESKTOP */}
 				<div className="hidden md:flex justify-between gap-10 items-center">
-					<Link href="/" className={`${resolvedTheme === "light" || !resolvedTheme ? "after:bg-black" : "after:bg-white"} underline-animation`}>Home</Link>
-					<Link href="/" className={`${resolvedTheme === "light" || !resolvedTheme ? "after:bg-black" : "after:bg-white"} underline-animation`}>Projects</Link>
-					<Link href="/" className={`${resolvedTheme === "light" || !resolvedTheme ? "after:bg-black" : "after:bg-white"} underline-animation`}>Contact Me</Link>
+					<div onClick={() => scrolltoHash('hero')} className={`${resolvedTheme === "light" || !resolvedTheme ? "after:bg-black" : "after:bg-white"} hover:cursor-pointer underline-animation`}>Home</div>
+					<div onClick={() => scrolltoHash('featured')} className={`${resolvedTheme === "light" || !resolvedTheme ? "after:bg-black" : "after:bg-white"} hover:cursor-pointer underline-animation`}>Projects</div>
+					<div onClick={() => scrolltoHash('contact-me')} className={`${resolvedTheme === "light" || !resolvedTheme ? "after:bg-black" : "after:bg-white"} hover:cursor-pointer underline-animation`}>Contact Me</div>
 				</div>
 			</div>
 		</nav>

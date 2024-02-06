@@ -5,7 +5,6 @@ import { useForm } from "react-hook-form"
 import { z } from "zod"
 import { useEffect, useState } from "react"
 import { Button } from "@/components/ui/button"
-import emailjs from "emailjs-com"
 import {
   Form,
   FormControl,
@@ -68,7 +67,7 @@ export default function ContactForm() {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 border rounded-md p-16">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 md:border rounded-md md:p-16">
         <FormField
           control={form.control}
           name="from_email"
