@@ -33,10 +33,11 @@ export default function Home(): JSX.Element {
             <EmailIcon className="icon" />
         </IconButton>
       </div>
-      <Button className="w-32 mt-2 md:w-36 md:mt-6">
+      <Button variant="ring" className="w-32 mt-2 md:w-36 md:mt-6">
           <FileTextIcon className="mr-2 h-4 w-4"/>
           <a href="/VYResume.pdf" target="_blank" rel="noopener noreferrer">Resume</a>
       </Button>
+
     </div>
   )
 }
