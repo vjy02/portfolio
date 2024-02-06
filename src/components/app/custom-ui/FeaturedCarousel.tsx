@@ -18,8 +18,11 @@ import wordle from "../../../../public/img/wordle.png"
 
 export function FeaturedCarousel(): JSX.Element{
 
-  const isMobile = window.innerWidth <= 768
+  let isMobile = false
 
+  if (typeof window !== "undefined") {
+    isMobile = window.innerWidth <= 768
+  }
   const featuredProjects = [
     {
       title: "CulinaryAI",
@@ -45,11 +48,11 @@ export function FeaturedCarousel(): JSX.Element{
   ]
   
   return (
-    <Carousel className="w-[85vw] md:max-w-[63vw] pointer-events-none md:pointer-events-auto" orientation={window.innerWidth <= 768 ? "vertical" : "horizontal"}>
+    <Carousel className="w-[85vw] md:max-w-[63vw] pointer-events-none md:pointer-events-auto" orientation={isMobile ? "vertical" : "horizontal"}>
       <CarouselContent>
         {featuredProjects.map((project, index) => (
           <CarouselItem key={index} className="md:basis-[64%]">
-                {window.innerWidth <= 768 ? (
+                {isMobile ? (
                   <Card className="flex flex-col">
                     <CardHeader className="">
                       <CardTitle>{project.title}</CardTitle>
