@@ -19,12 +19,10 @@ export async function POST(
             },
             body: JSON.stringify(emailData)
         })
-        alert("Message sent. Thanks for reaching out!")
         return NextResponse.json({message:"Sent Email!"}, {status:200})
     }
     catch(e){
         console.log(e)
-        alert("Failed to send! Please try again later. :(")
         return NextResponse.json({message:"Failed to send email!"}, {status:400})
     }
 }

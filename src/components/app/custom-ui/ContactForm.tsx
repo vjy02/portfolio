@@ -56,7 +56,11 @@ export default function ContactForm() {
       body: JSON.stringify(values)
     })
     if (!res.ok) {
+      alert("Failed to send! Please try again later. :(")
       throw new Error("Failed to send email!");
+    }
+    else{
+      alert("Message sent. Thanks for reaching out!")
     }
   }
 
