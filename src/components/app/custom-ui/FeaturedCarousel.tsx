@@ -11,7 +11,9 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel"
 import Image from "next/image"
+
 import culinaryAI from "../../../img/culinaryAI.png"
+import hackMelb from "../../../img/hackMelb.png"
 
 export function FeaturedCarousel(): JSX.Element{
   const [isMobile, setIsMobile] = useState(false);
@@ -19,26 +21,48 @@ export function FeaturedCarousel(): JSX.Element{
   useEffect(() => {
     setIsMobile(window.innerWidth <= 768);
   }, []);
+
+  const featuredProjects = [
+    {
+      title: "CulinaryAI",
+      desc: "Generate recipes using the power of AI! Select ingredients and diet then watch the magic happen. Saving and favoriting your favorite recipes are also possible through an easy process of just connecting your Google account.",
+      stack: ["Next.js", "TypeScript", "MongoDB", "OAuth"],
+      img: culinaryAI
+    },
+    {
+      title: "HackMelbourne",
+      desc: "Part of my role as a Website Officer, I helped develop the revamped HackMelbourne website. In a group of 4 contributors, we developed this project in an agile manner, having 2 weeks sprints ensuring features were made in a timely and concise manner.",
+      stack: ["Next.js", "TypeScript", "TailwindCSS"],
+      img: hackMelb
+    },
+    {
+      title:"Coming Soon",
+      desc: "Coming Soon.",
+      stack: [],
+      img: ""
+    }
+  ]
   
   return (
     <Carousel className="w-[85vw] md:max-w-[60vw] pointer-events-none md:pointer-events-auto" orientation={isMobile ? "vertical" : "horizontal"}>
       <CarouselContent>
-        {Array.from({ length: 3 }).map((_, index) => (
+        {featuredProjects.map((project, index) => (
           <CarouselItem key={index} className="md:basis-[64%]">
                 {isMobile ? (
                   <Card className="flex flex-col">
                     <CardHeader className="">
-                      <CardTitle>CulinaryAI</CardTitle>
+                      <CardTitle>{project.title}</CardTitle>
                     </CardHeader>
-                    <CardContent className="">
-                      <Image src={culinaryAI} alt="project image" className="rounded-md brightness-50"></Image>
+                    <CardContent className="brightness-50 hover:brightness-100">
+                      <Image src={project.img} alt="project image" className="rounded-md"></Image>
                     </CardContent>
                     <CardFooter className="">
                       <div className="flex gap-2 md:gap-6">
-                        <Badge variant="outline" className="text-xs md:text-sm">Next.js</Badge>
-                        <Badge variant="outline" className="text-xs md:text-sm">Typescript</Badge>
-                        <Badge variant="outline" className="text-xs md:text-sm">MongoDB</Badge>
-                        <Badge variant="outline" className="text-xs md:text-sm">OAuth</Badge>
+                        {project.stack.map((tech,i) => {
+                          return (
+                            <Badge key={i} variant="outline" className="text-xs md:text-sm hover:cursor-default">{tech}</Badge>
+                          )
+                        })}
                       </div>
                     </CardFooter>
                   </Card>
@@ -46,18 +70,19 @@ export function FeaturedCarousel(): JSX.Element{
                 :(
                   <Card className="flex flex-col">
                     <CardHeader className="">
-                      <CardTitle>CulinaryAI</CardTitle>
-                      <CardDescription >Generate recipes using the power of AI! Select ingredients and diet then watch the magic happen. Saving and favoriting your favorite recipes are also possible through an easy process of just connecting your Google account.</CardDescription>
+                      <CardTitle>{project.title}</CardTitle>
+                      <CardDescription >{project.desc}</CardDescription>
                     </CardHeader>
                     <CardContent className="invisible md:visible">
-                      <Image src={culinaryAI} alt="project image" className="rounded-md brightness-50"></Image>
+                      <Image src={project.img} alt="project image" className="brightness-75 hover:cursor-pointer hover:brightness-100 transition ease-in-out duration-500 rounded-md border"></Image>
                     </CardContent>
                       <CardFooter className="invisible md:visible">
                         <div className="flex gap-6">
-                          <Badge variant="outline" className="text-sm">Next.js</Badge>
-                          <Badge variant="outline" className="text-sm">Typescript</Badge>
-                          <Badge variant="outline" className="text-sm">MongoDB</Badge>
-                          <Badge variant="outline" className="text-sm">OAuth</Badge>
+                          {project.stack.map((tech,i) => {
+                            return (
+                              <Badge key={i} variant="outline" className="text-xs md:text-sm">{tech}</Badge>
+                            )
+                          })}
                         </div>
                       </CardFooter>
                     </Card>
