@@ -12,9 +12,9 @@ import {
 } from "@/components/ui/carousel"
 import Image from "next/image"
 
-import culinaryAI from "../../../img/culinaryAI.png"
-import hackMelb from "../../../img/hackMelb.png"
-import wordle from "../../../img/wordle.png"
+import culinaryAI from "../../../../public/img/culinaryAI.png"
+import hackMelb from "../../../../public/img/hackMelb.png"
+import wordle from "../../../../public/img/wordle.png"
 
 export function FeaturedCarousel(): JSX.Element{
 
