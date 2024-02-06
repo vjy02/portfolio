@@ -29,8 +29,8 @@ export default function Home(): JSX.Element {
             <LinkedInIcon className="icon"/>
         </IconButton>
 
-        <IconButton sx={{ '&:hover': { backgroundColor: theme === 'dark' ? 'white' : 'black' }, '& .icon': { color: theme === 'dark' ? 'white' : 'black' }, '&:hover .icon': { color: theme === 'dark' ? 'black' : 'white' }}} >
-            <EmailIcon className="icon"/>
+        <IconButton href="mailto:victorjohyoshida@gmail.com" sx={{ '&:hover': { backgroundColor: theme === 'dark' ? 'white' : 'black' }, '& .icon': { color: theme === 'dark' ? 'white' : 'black' }, '&:hover .icon': { color: theme === 'dark' ? 'black' : 'white' }}} >
+            <EmailIcon className="icon" />
         </IconButton>
       </div>
       <Button className="w-32 mt-2 md:w-36 md:mt-6">
