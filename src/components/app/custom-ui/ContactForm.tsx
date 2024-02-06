@@ -59,7 +59,7 @@ export default function ContactForm() {
       throw new Error("Failed to send email!");
     }
     else{
-      alert("Message sent. thanks for reaching out!")
+      alert("Message sent. Thanks for reaching out!")
     }
   }
 
