@@ -18,11 +18,20 @@ import wordle from "../../../../public/img/wordle.png"
 
 export function FeaturedCarousel(): JSX.Element{
 
-  let isMobile = false
-
-  if (typeof window !== "undefined") {
-    isMobile = window.innerWidth <= 768
+  const [isMobile, setIsMobile] = useState(false)
+ 
+  const handleResize = () => {
+    if (window.innerWidth < 900) {
+        setIsMobile(true)
+    } else {
+        setIsMobile(false)
+    }
   }
+  
+  useEffect(() => {
+    window.addEventListener("resize", handleResize)
+  })
+
   const featuredProjects = [
     {
       title: "CulinaryAI",
@@ -82,8 +91,8 @@ export function FeaturedCarousel(): JSX.Element{
                       <Image src={project.img} alt="project image" className=" object-cover md:h-[100%] brightness-90 hover:cursor-pointer hover:brightness-100 transition ease-in-out duration-500 rounded-md border"></Image>
                       </a>
                     </CardContent>
-                    <CardFooter className=" invisible md:visible">
-                      <div className="flex gap-6">
+                    <CardFooter className="invisible md:visible">
+                      <div className="flex gap-2">
                         {project.stack.map((tech,i) => {
                           return (
                             <Badge key={i} variant="outline" className="text-xs md:text-sm">{tech}</Badge>
