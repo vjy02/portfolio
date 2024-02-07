@@ -92,8 +92,7 @@ export default function Navbar(): JSX.Element {
 		<nav className={`${visible ? 'md:opacity-100' : 'md:opacity-0 pointer-events-none'} z-10 h-[12vh] transition ease-in-out delay-100 w-screen max-w-full flex justify-center items-center absolute md:fixed`}>
 			<div className="flex w-[100%] md:w-[97%] justify-between items-center pl-5 md:pl-0">
 				<FormControlLabel
-					control={<MaterialUISwitch sx={{ m: 1 }} />}
-					onClick={() => {setTheme(resolvedTheme === "light" ? "dark" : "light")}}
+					control={<MaterialUISwitch onClick={() => {setTheme(resolvedTheme === "light" ? "dark" : "light")}} sx={{ m: 1 }} />}
 					label=""
 				/>
 				{/* MOBILE */}
