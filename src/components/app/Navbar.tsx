@@ -94,6 +94,7 @@ export default function Navbar(): JSX.Element {
 				<FormControlLabel
 					control={<MaterialUISwitch onClick={() => {setTheme(resolvedTheme === "light" ? "dark" : "light")}} sx={{ m: 1 }} />}
 					label=""
+					onClick={() => {setTheme(resolvedTheme === "light" ? "dark" : "light")}}
 				/>
 				{/* MOBILE */}
 				<button className=" md:hidden"></button>
