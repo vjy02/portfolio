@@ -67,7 +67,9 @@ export function FeaturedCarousel(): JSX.Element{
                       <CardTitle>{project.title}</CardTitle>
                     </CardHeader>
                     <CardContent className="brightness-90 hover:brightness-100 h-[60%]">
-                      <Image src={project.img} alt="project image" className="object-cover h-[100%] rounded-md"></Image>
+                      <a href={project.link} target="_blank" rel="noopener noreferrer">
+                        <Image src={project.img} alt="project image" className="object-cover h-[100%] rounded-md"></Image>
+                      </a>
                     </CardContent>
                     <CardFooter className="">
                       <div className="flex gap-2 md:gap-6">
@@ -88,7 +90,7 @@ export function FeaturedCarousel(): JSX.Element{
                     </CardHeader>
                     <CardContent className="invisible md:visible md:h-[65%]">
                       <a href={project.link} target="_blank" rel="noopener noreferrer">
-                      <Image src={project.img} alt="project image" className=" object-cover md:h-[100%] brightness-90 hover:cursor-pointer hover:brightness-100 transition ease-in-out duration-500 rounded-md border"></Image>
+                        <Image src={project.img} alt="project image" className=" object-cover md:h-[100%] brightness-90 hover:cursor-pointer hover:brightness-100 transition ease-in-out duration-500 rounded-md border"></Image>
                       </a>
                     </CardContent>
                     <CardFooter className="invisible md:visible">
