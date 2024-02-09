@@ -5,7 +5,7 @@ import ContactMe from "../components/app/ContactMe"
 export default function Home() {
 
   return (
-  <div className="flex flex-col items-center gap-11">
+  <div className="flex flex-col items-center gap-16 p-10">
     <Hero />
     <Featured />
     <ContactMe />

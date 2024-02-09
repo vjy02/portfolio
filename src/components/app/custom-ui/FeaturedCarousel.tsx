@@ -18,19 +18,19 @@ import wordle from "../../../../public/img/wordle.png"
 
 export function FeaturedCarousel(): JSX.Element{
 
-  const [isMobile, setIsMobile] = useState(false)
- 
-  const handleResize = () => {
-    if (window.innerWidth < 900) {
-        setIsMobile(true)
-    } else {
-        setIsMobile(false)
-    }
+  const [width, setWidth] = useState<number>(window.innerWidth);
+
+  function handleWindowSizeChange() {
+      setWidth(window.innerWidth);
   }
-  
   useEffect(() => {
-    window.addEventListener("resize", handleResize)
-  })
+      window.addEventListener('resize', handleWindowSizeChange);
+      return () => {
+          window.removeEventListener('resize', handleWindowSizeChange);
+      }
+  }, []);
+  
+  const isMobile = width <= 768;
 
   const featuredProjects = [
     {
