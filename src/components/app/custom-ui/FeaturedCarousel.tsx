@@ -18,7 +18,7 @@ import wordle from "../../../../public/img/wordle.png"
 
 export function FeaturedCarousel(): JSX.Element{
 
-  const [width, setWidth] = useState<number>(window.innerWidth);
+  const [width, setWidth] = useState<number>(typeof window !== 'undefined' ? window.innerWidth : 1000);
 
   function handleWindowSizeChange() {
       setWidth(window.innerWidth);
