@@ -14,7 +14,7 @@ import Image from "next/image"
 
 import culinaryAI from "../../../../public/img/culinaryAI.png"
 import hackMelb from "../../../../public/img/hackMelb.png"
-import wordle from "../../../../public/img/wordle.png"
+import groupSpace from "../../../../public/img/groupSpace.jpg"
 
 export function FeaturedCarousel(): JSX.Element{
 
@@ -48,11 +48,11 @@ export function FeaturedCarousel(): JSX.Element{
       link: "https://hack.melbourne/"
     },
     {
-      title:"Javascript Projects",
-      desc: "A collection of my various mini-projects made with vanilla javascript. Main goal here was to get a grasp of the basics of DOM manipulation without any framework adding layers of simplification. Made projects such as: Wordle clone, snake game, sudoku, tic-tac-toe, etc.",
-      stack: ["Javascript", "HTML", "CSS"],
-      img: wordle,
-      link: "https://github.com/vjy02/vanilla-js-practices"
+      title:"GroupSpace",
+      desc: "My first hackathon was at Unihack 2024 where my team developed GroupSpace. It's a web application that enables tutors to establish virtual spaces where students can connect based on shared criteria such as availability, target grades, hobbies, and more.",
+      stack: ["React.js", "Firebase", "Node.js"],
+      img: groupSpace,
+      link: "https://devpost.com/software/groupspace"
     }
   ]
   

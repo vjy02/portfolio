@@ -54,10 +54,10 @@ export default function Home(): JSX.Element {
         viewport={{ once: true }}
         transition={{ delay: 0.75 }}
       >
-        <Button variant="ring" className="w-32 mt-2 md:w-36 md:mt-6">
+        <Button variant="ring" className="w-32 mt-2 md:w-36 md:mt-6" onClick={()=>window.open("https://drive.google.com/file/d/1iodvGx4BBUiv2N_dYpuDZCga66FYzn5g/view?usp=sharing", "_blank")}>
             <FileTextIcon className="mr-2 h-4 w-4"/>
-            <a href="/VYResume.pdf" target="_blank" rel="noopener noreferrer">Resume</a>
-        </Button>
+            Resume
+         </Button>
       </motion.div>
 
     </div>
