@@ -1,14 +1,3 @@
-Revamped portfolio website, hoping to expand on this in the future.
+# ✨ Personal Portfolio ✨
 
-## Getting Started
-
-Run the development server:
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+My own personal website where I showcase some of my projects and a place where you can find my contact details or fill out a form to reach out directly.
