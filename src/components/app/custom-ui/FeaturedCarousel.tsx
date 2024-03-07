@@ -43,7 +43,7 @@ export function FeaturedCarousel(): JSX.Element{
     {
       title: "HackMelbourne",
       desc: "Part of my role as a Website Officer, I helped develop the revamped HackMelbourne website. In a group of 4 contributors, we developed this project in an agile manner, having 2 weeks sprints ensuring features were made in a timely and concise manner.",
-      stack: ["Next.js", "TypeScript", "TailwindCSS"],
+      stack: ["React.js", "TypeScript", "TailwindCSS"],
       img: hackMelb,
       link: "https://hack.melbourne/"
     },
