@@ -35,21 +35,6 @@ div:focus::after {
   transform: translate3d(0, 0.2em, 0);
 }
 
-.animate-in-view {
-  animation: fadeIn 0.5s ease-out forwards;
-}
-
-@keyframes fadeIn {
-  from {
-      opacity: 0;
-      transform: translateY(-50px);
-  }
-  to {
-      opacity: 1;
-      transform: translateY(0);
-  }
-}
-
 @layer base {
   :root {
     --background: 0 0% 100%;

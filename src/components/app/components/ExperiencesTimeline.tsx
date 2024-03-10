@@ -37,7 +37,7 @@ export default function ExperiencesTimeline() {
     const { theme } = useTheme();
 
     return (
-       <VerticalTimeline lineColor=""animate={true}>
+       <VerticalTimeline lineColor="" animate={true} className="relative">
          {experiencesData.map((item, index) => {
            // eslint-disable-next-line react-hooks/rules-of-hooks
            const [ref, inView] = useInView({
@@ -45,7 +45,7 @@ export default function ExperiencesTimeline() {
            });
    
            return (
-            <div ref={ref} key={index} className="vertical-timeline-element">
+            <div ref={ref} key={index} className={`vertical-timeline-element ${index === 0 ? "absolute -top-9" : "absolute -top-9"}`}>
                  <VerticalTimelineElement
                    visible={inView}
                    contentStyle={{
@@ -62,6 +62,7 @@ export default function ExperiencesTimeline() {
                    icon={item.icon}
                    iconStyle={{
                     background: theme === "light" ? "rgba(255, 255, 255, 0.678)" : "rgba(255, 255, 255, 0.15)",
+                    fontSize: "1.5rem",
                    }}
                  >
                    <h3 className="font-semibold capitalize text-xl">{item.title}</h3>
