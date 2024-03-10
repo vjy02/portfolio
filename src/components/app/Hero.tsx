@@ -25,7 +25,7 @@ export default function Home(): JSX.Element {
         </h3>
         <h1 className="text-3xl md:text-5xl">
           I am a software engineer based in Melbourne.
-        </h1>     
+        </h1>
       </motion.div>
 
       <motion.div 

@@ -17,7 +17,7 @@ export default function Featured(): JSX.Element {
       <div className="flex flex-col items-center justify-between">
         <section ref={ref}>
           <motion.h1 
-            className="relative text-3xl md:text-5xl mb-5 md:mb-16 font-bold"
+            className="relative text-3xl md:text-5xl mb-5 md:mb-16"
             style={{ opacity: scaleValue }}
           >
             Featured Projects

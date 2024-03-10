@@ -57,7 +57,7 @@ export function FeaturedCarousel(): JSX.Element{
   ]
   
   return (
-    <Carousel className="w-[85vw] md:max-w-[65vw] pointer-events-none md:pointer-events-auto" orientation={isMobile ? "vertical" : "horizontal"}>
+    <Carousel className="w-[85vw] md:max-w-[75vw] xl:mad-w-[65vw] pointer-events-none md:pointer-events-auto" orientation={isMobile ? "vertical" : "horizontal"}>
       <CarouselContent>
         {featuredProjects.map((project, index) => (
           <CarouselItem key={index} className="md:basis-[64%]">

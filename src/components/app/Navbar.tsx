@@ -77,7 +77,7 @@ export default function Navbar(): JSX.Element {
 		if (currentScrollPos > prevScrollPos) {
 			setVisible(false)
 		}
-		else {
+		else if (currentScrollPos === 0) {
 			setVisible(true)
 		}
 		setPrevScrollPos(currentScrollPos)
@@ -90,7 +90,7 @@ export default function Navbar(): JSX.Element {
 
 	return (
 		<nav className={`${visible ? 'md:opacity-100' : 'md:opacity-0 md:pointer-events-none'} z-10 h-[12vh] transition ease-in-out delay-100 w-screen max-w-full flex justify-center items-center absolute md:fixed`}>
-			<div className="flex w-[100%] md:w-[97%] justify-between items-center pl-5 md:pl-0">
+			<div className="flex w-[100%] md:w-[95%] justify-between items-center pl-5 md:pl-0">
 				<FormControlLabel
 					control={<MaterialUISwitch onClick={() => {setTheme(resolvedTheme === "light" ? "dark" : "light")}} />}
 					label=""
@@ -100,7 +100,6 @@ export default function Navbar(): JSX.Element {
 
 				{/* DESKTOP */}
 				<div className="hidden md:flex justify-between gap-10 items-center">
-					<div onClick={() => scrolltoHash('hero')} className={`${resolvedTheme === "light" || !resolvedTheme ? "after:bg-black" : "after:bg-white"} hover:cursor-pointer underline-animation`}>Home</div>
 					<div onClick={() => scrolltoHash('featured')} className={`${resolvedTheme === "light" || !resolvedTheme ? "after:bg-black" : "after:bg-white"} hover:cursor-pointer underline-animation`}>Projects</div>
 					<div onClick={() => scrolltoHash('contact-me')} className={`${resolvedTheme === "light" || !resolvedTheme ? "after:bg-black" : "after:bg-white"} hover:cursor-pointer underline-animation`}>Contact Me</div>
 				</div>
