@@ -21,10 +21,33 @@
     transition: opacity 300ms, transform 300ms;
 }
 
+html {
+  --line-color: #e5e7eb;
+}
+
+html.dark {
+  --line-color: rgba(255, 255, 255, 0.2);
+}
+
 div:hover::after,
 div:focus::after {
   opacity: 1;
   transform: translate3d(0, 0.2em, 0);
+}
+
+.animate-in-view {
+  animation: fadeIn 0.5s ease-out forwards;
+}
+
+@keyframes fadeIn {
+  from {
+      opacity: 0;
+      transform: translateY(-50px);
+  }
+  to {
+      opacity: 1;
+      transform: translateY(0);
+  }
 }
 
 @layer base {

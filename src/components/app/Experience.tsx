@@ -1,11 +1,14 @@
 import { motion } from "framer-motion";
+import ExperiencesTimeline from "./components/ExperiencesTimeline";
 
 export default function Experience(): JSX.Element{
     
     return(
-        <div id="experiences" className="min-h-[55vh] lg:h-[55vh] lg:w-[100vw] flex flex-col justify-start items-center">
+        <section className="min-h-[55vh] lg:h-fit lg:w-[95vw] flex flex-col justify-between items-center relative">
             {/*eslint-disable-next-line react/no-unescaped-entities*/}
-            <h1 className="text-3xl md:text-5xl md:my-16">Previous Experiences</h1>
-        </div>
+            <h1 className="text-3xl md:text-5xl my-16 md:my-32">Where I have worked.</h1>
+            <div className="absolute top-[70%]" id="experience"></div>
+            <ExperiencesTimeline />
+        </section>
     )
 }

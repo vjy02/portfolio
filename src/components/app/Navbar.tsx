@@ -100,6 +100,7 @@ export default function Navbar(): JSX.Element {
 
 				{/* DESKTOP */}
 				<div className="hidden md:flex justify-between gap-10 items-center">
+					<div onClick={() => scrolltoHash('experience')} className={`${resolvedTheme === "light" || !resolvedTheme ? "after:bg-black" : "after:bg-white"} hover:cursor-pointer underline-animation`}>Experience</div>
 					<div onClick={() => scrolltoHash('featured')} className={`${resolvedTheme === "light" || !resolvedTheme ? "after:bg-black" : "after:bg-white"} hover:cursor-pointer underline-animation`}>Projects</div>
 					<div onClick={() => scrolltoHash('contact-me')} className={`${resolvedTheme === "light" || !resolvedTheme ? "after:bg-black" : "after:bg-white"} hover:cursor-pointer underline-animation`}>Contact Me</div>
 				</div>

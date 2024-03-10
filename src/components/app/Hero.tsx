@@ -13,7 +13,7 @@ export default function Home(): JSX.Element {
   const { theme } = useTheme();
   
   return (
-    <div id="hero" className="flex flex-col w-[85vw] min-h-[35vh] md:min-h-[100vh] md:h-[100vh] mt-[10vh] md:mt-0 gap-4 md:gap-5 justify-center">
+    <section id="hero" className="flex flex-col w-[85vw] min-h-[35vh] md:min-h-[100vh] md:h-[100vh] mt-[10vh] md:mt-0 gap-4 md:gap-5 justify-center">
       <motion.div
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
@@ -60,6 +60,6 @@ export default function Home(): JSX.Element {
          </Button>
       </motion.div>
 
-    </div>
+    </section>
   )
 }

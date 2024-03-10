@@ -13,12 +13,12 @@ export default function Home() {
   const heroRef = useRef<HTMLDivElement>(null);
   const featuredRef = useRef<HTMLDivElement>(null);
   const contactMeRef = useRef<HTMLDivElement>(null);
-  //const experiencesRef = useRef<HTMLDivElement>(null);
+  const experienceRef = useRef<HTMLDivElement>(null);
 
   const heroInView = useOnScreen(heroRef);
   const featuredInView = useOnScreen(featuredRef);
   const contactMeInView = useOnScreen(contactMeRef);
-  //const experiencesInView = useOnScreen(experiencesRef)
+  const experienceInView = useOnScreen(experienceRef)
 
   const { theme } = useTheme();
   const [width, setWidth] = useState<number>(typeof window !== 'undefined' ? window.innerWidth : 1000);
@@ -38,29 +38,38 @@ export default function Home() {
       <div ref={heroRef}>
         <Hero />
       </div>
+      <div ref={experienceRef}>
+        <Experience />
+      </div>
       <div ref={featuredRef}>
         <Featured />
       </div>
       <div ref={contactMeRef}>
         <ContactMe />
       </div>
-      <div className={`fixed flex top-0 right-[55px] px-0 py-[10px] h-full items-center justify-between ${isMobile ? "hidden" : ""}`}>
+      <div className={`fixed flex -top-10 right-[55px] px-0 py-[10px] h-full items-center justify-between ${isMobile ? "hidden" : ""}`}>
         <div className="block list-none m-0 p-0">
           <a
             className={`block px-[2px] mx-0 my-[2px] ${theme === 'dark' ? 'bg-gray-500' : "bg-gray-200"} transition-all duration-300 ease-in-out ${
-              heroInView ? `py-[19px] ${theme === 'dark' ? 'bg-white py-[20px]' : 'bg-gray-900 py-[20px]'}` : "py-[9px]"}`}
+              heroInView ? `py-[19px] ${theme === 'dark' ? 'bg-white py-[30px]' : 'bg-gray-900 py-[30px]'}` : "py-[15px]"}`}
           >
             <span></span>
           </a>
           <a
             className={`block px-[2px] mx-0 my-[2px] ${theme === 'dark' ? 'bg-gray-500' : "bg-gray-200"} transition-all duration-300 ease-in-out ${
-              featuredInView ? `py-[19px] ${theme === 'dark' ? 'bg-white py-[20px]' : 'bg-gray-900 py-[20px]'}` : "py-[9px]"}`}
+              experienceInView ? `py-[19px] ${theme === 'dark' ? 'bg-white py-[30px]' : 'bg-gray-900 py-[30px]'}` : "py-[15px]"}`}
           >
             <span></span>
           </a>
           <a
             className={`block px-[2px] mx-0 my-[2px] ${theme === 'dark' ? 'bg-gray-500' : "bg-gray-200"} transition-all duration-300 ease-in-out ${
-              contactMeInView ? `py-[19px] ${theme === 'dark' ? 'bg-white py-[20px]' : 'bg-gray-900 py-[20px]'}` : "py-[9px]"}`}
+              featuredInView ? `py-[19px] ${theme === 'dark' ? 'bg-white py-[30px]' : 'bg-gray-900 py-[30px]'}` : "py-[15px]"}`}
+          >
+            <span></span>
+          </a>
+          <a
+            className={`block px-[2px] mx-0 my-[2px] ${theme === 'dark' ? 'bg-gray-500' : "bg-gray-200"} transition-all duration-300 ease-in-out ${
+              contactMeInView ? `py-[19px] ${theme === 'dark' ? 'bg-white py-[30px]' : 'bg-gray-900 py-[30px]'}` : "py-[15px]"}`}
           >
             <span></span>
           </a>

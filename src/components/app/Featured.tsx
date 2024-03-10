@@ -1,7 +1,7 @@
 "use client"
 
 import { useRef, useEffect } from "react";
-import { FeaturedCarousel } from "./custom-ui/FeaturedCarousel";
+import { FeaturedCarousel } from "./components/FeaturedCarousel";
 import { motion, useScroll, useTransform } from "framer-motion";
 
 export default function Featured(): JSX.Element {
@@ -13,14 +13,14 @@ export default function Featured(): JSX.Element {
   let scaleValue = useTransform(scrollYProgress, [0, 0.7], ['0', '1']);
 
   return (
-    <div id="featured" className="min-h-[55vh] lg:h-[100vh] flex justify-center items-center">
+    <section id="featured" className="min-h-[55vh] lg:h-[100vh] flex justify-center items-center">
       <div className="flex flex-col items-center justify-between">
         <section ref={ref}>
           <motion.h1 
             className="relative text-3xl md:text-5xl mb-5 md:mb-16"
             style={{ opacity: scaleValue }}
           >
-            Featured Projects
+            My featured projects.
           </motion.h1>
         </section>
         
@@ -30,6 +30,6 @@ export default function Featured(): JSX.Element {
           <FeaturedCarousel />
         </motion.div>
       </div>
-    </div>
+    </section>
   );
 }
