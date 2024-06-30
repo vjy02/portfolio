@@ -83,7 +83,7 @@ export function FeaturedCarousel(): JSX.Element{
                   </Card>
                 )
                 :(
-                  <Card className="flex flex-col px-3">
+                  <Card className="flex flex-col px-3 md:py-2">
                     <CardHeader className="">
                       <CardTitle>{project.title}</CardTitle>
                       <CardDescription >{project.desc}</CardDescription>
