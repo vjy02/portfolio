@@ -83,7 +83,7 @@ export function FeaturedProjectsGrid(): JSX.Element {
                 onClick={() => window.open(project.link, "_blank")}
                 className="text-xs flex items-center py-2 px-3 gap-1 bg-gray-800 text-white md:border-gray-100 dark:border-gray-800 dark:bg-black dark:hover:border-gray-600 md:border-2 rounded-md hover:border-gray-500 duration-300 transform"
               >
-                <GitHubIcon className="text-xs" />
+                <GitHubIcon fontSize="0.5rem"  />
                 Code
               </button>
             )}
@@ -92,7 +92,7 @@ export function FeaturedProjectsGrid(): JSX.Element {
                 onClick={() => window.open(project.link, "_blank")}
                 className="flex text-xs items-center py-1 px-3 gap-1 md:border-gray-100 dark:border-gray-800 dark:hover:border-gray-600 md:border-2 rounded-md hover:border-gray-300 duration-300 transform"
               >
-                <LaunchIcon className="text-xs" />
+                <LaunchIcon fontSize="0.5rem" />
                 Link
               </button>
             )}
