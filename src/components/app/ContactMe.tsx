@@ -21,7 +21,7 @@ export default function ContactMe(): JSX.Element {
       className="min-h-[40vh] md:min-h-[55vh] w-[80vw] md:w-[50vw] flex flex-col items-center relative md:mt-16"
     >
       <h1 className="relative text-3xl md:text-5xl mt-24 mb-12 md:mt-32 md:mb-24" ref={ref}>
-        let's connect.
+        let&apos;s connect.
       </h1>
       <div
         className="flex w-[60%] md:w-[25%] justify-between"
