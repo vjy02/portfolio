@@ -26,10 +26,10 @@ export default function Home() {
     ? "hero"
     : experienceInView
     ? "experience"
-    : featuredInView
-    ? "featured"
     : contactMeInView
     ? "contact"
+    : featuredInView
+    ? "featured"
     : null;
 
   const { theme } = useTheme();

@@ -12,14 +12,18 @@ export default function Experience(): JSX.Element {
   });
   let scaleValue = useTransform(scrollYProgress, [0, 0.7], ["0", "1"]);
   return (
-      <motion.section
+    <motion.section
       className="min-h-[55vh] lg:h-fit w-[80vw] md:w-[50vw] flex flex-col justify-between items-center relative"
-      ref={ref}
-        style={{ opacity: scaleValue }}
+      style={{ opacity: scaleValue }}
+    >
+      <h1
+        className="text-3xl md:text-5xl mt-24 mb-12 md:mt-32 md:mb-24"
+        ref={ref}
       >
-        <h1 className="text-3xl md:text-5xl mt-24 mb-12 md:mt-32 md:mb-24">things I wrote.</h1>
-        <div className="absolute top-[70%]" id="experience"></div>
-        <BlogPostSummary />
-      </motion.section>
+        things I wrote.
+      </h1>
+      <BlogPostSummary />
+      <div id="experience" className="absolute -bottom-48"></div>
+    </motion.section>
   );
 }

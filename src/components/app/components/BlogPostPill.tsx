@@ -11,11 +11,11 @@ export default function BlogPostPill({
     <div className="flex w-full md:w-11/12">
       <div className="max-w-[75%] md:max-w-[80%]">
         <h3 className="font-bold text-sm md:text-xl">
-          {title}
+          <a href="" className="hover:underline">
+            {title}
+          </a>
         </h3>
-        <p className="text-xs md:text-base">
-          {description}
-        </p>
+        <p className="text-xs md:text-base">{description}</p>
       </div>
       <p className="ml-auto text-xs md:text-base">{date}</p>
     </div>

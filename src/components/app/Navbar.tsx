@@ -118,7 +118,7 @@ export default function Navbar(): JSX.Element {
                 : "after:bg-white"
             } hover:cursor-pointer underline-animation`}
           >
-            Experience
+            Posts
           </div>
           <div
             onClick={() => scrolltoHash("featured")}
@@ -138,7 +138,7 @@ export default function Navbar(): JSX.Element {
                 : "after:bg-white"
             } hover:cursor-pointer underline-animation`}
           >
-            Contact Me
+            Contact
           </div>
         </div>
       </div>
