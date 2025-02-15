@@ -27,7 +27,7 @@ import { useTheme } from "next-themes";
 import LaunchIcon from "@mui/icons-material/Launch";
 import GitHubIcon from "@mui/icons-material/GitHub";
 
-export function FeaturedProjectsFlex(): JSX.Element {
+export function FeaturedProjectsGrid(): JSX.Element {
   const featuredProjects = [
     {
       title: "CulinaryAI",
@@ -35,6 +35,7 @@ export function FeaturedProjectsFlex(): JSX.Element {
       stack: ["Next.js", "TypeScript", "MongoDB", "OAuth"],
       img: culinaryAI,
       link: "https://culinaryaiv2.netlify.app/",
+      repoLink: "https://github.com/vjy02/culinary-ai-v2.0",
     },
     {
       title: "HackMelbourne",
@@ -42,6 +43,7 @@ export function FeaturedProjectsFlex(): JSX.Element {
       stack: ["React.js", "TypeScript", "TailwindCSS"],
       img: hackMelb,
       link: "https://hack.melbourne/",
+      repoLink: "https://github.com/HackMelbourne/HackMelbourne.github.io",
     },
     {
       title: "GroupSpace",
@@ -49,6 +51,7 @@ export function FeaturedProjectsFlex(): JSX.Element {
       stack: ["React.js", "Firebase", "Node.js"],
       img: groupSpace,
       link: "https://devpost.com/software/groupspace",
+      repoLink: "https://github.com/ReadME-hackathon/UNIHACK",
     },
   ];
   const { theme } = useTheme();
@@ -73,20 +76,24 @@ export function FeaturedProjectsFlex(): JSX.Element {
           </div>
 
           <div className="flex gap-4 mt-2">
-            <button
-              onClick={() => window.open(project.link, "_blank")}
-              className="text-xs flex items-center py-1 px-1.5 gap-1 bg-gray-800 text-white rounded-lg hover:bg-gray-700 transition-colors duration-300"
-            >
-              <GitHubIcon className="text-xs" />
-              Code
-            </button>
-            <button
-              onClick={() => window.open(project.link, "_blank")}
-              className="flex text-xs items-center py-1 px-1.5 gap-1 bg-blue-600 text-white rounded-lg hover:bg-blue-500 transition-colors duration-300"
-            >
-              <LaunchIcon className="text-xs" />
-              Link
-            </button>
+            {project.repoLink && (
+              <button
+                onClick={() => window.open(project.link, "_blank")}
+                className="text-xs flex items-center py-2 px-3 gap-1 bg-gray-800 text-white md:border-gray-100 dark:border-gray-800 dark:bg-black dark:hover:border-gray-600 md:border-2 rounded-md hover:border-gray-500 duration-300 transform"
+              >
+                <GitHubIcon className="text-xs" />
+                Code
+              </button>
+            )}
+            {project.link && (
+              <button
+                onClick={() => window.open(project.link, "_blank")}
+                className="flex text-xs items-center py-1 px-3 gap-1 md:border-gray-100 dark:border-gray-800 dark:hover:border-gray-600 md:border-2 rounded-md hover:border-gray-300 duration-300 transform"
+              >
+                <LaunchIcon className="text-xs" />
+                Link
+              </button>
+            )}
           </div>
         </div>
       ))}
