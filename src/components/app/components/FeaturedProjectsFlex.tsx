@@ -60,7 +60,7 @@ export function FeaturedProjectsGrid(): JSX.Element {
       {featuredProjects.map((project, index) => (
         <div
           key={index + project.title}
-          className="cursor-default h-64 md:h-80 md:w-46 2xl:h-96 2xl:w-46 flex flex-col gap-2 md:justify-between md:p-4 md:border-gray-100 dark:border-gray-800 dark:hover:border-gray-600 md:border-2 rounded-md hover:border-gray-300 hover:-translate-y-2 transition-all ease-in-out duration-300 transform"
+          className="cursor-default h-64 md:h-80 md:w-46 2xl:h-96 2xl:w-46 flex flex-col gap-2 md:justify-between md:p-4 md:border-transparent dark:border-gray-800 dark:hover:border-gray-600 md:border-2 rounded-md hover:border-gray-300 hover:-translate-y-2 transition-all ease-in-out duration-300 transform border-dashed"
         >
           <div className="h-3/5 md:h-2/6 relative border rounded-xl">
             <Image
@@ -83,7 +83,7 @@ export function FeaturedProjectsGrid(): JSX.Element {
                 onClick={() => window.open(project.link, "_blank")}
                 className="text-xs flex items-center py-2 px-3 gap-1 bg-gray-800 text-white md:border-gray-100 dark:border-gray-800 dark:bg-black dark:hover:border-gray-600 md:border-2 rounded-md hover:border-gray-500 duration-300 transform"
               >
-                <GitHubIcon sx={{ fontSize: '0.7rem' }} />
+                <GitHubIcon sx={{ fontSize: "0.7rem" }} />
                 Code
               </button>
             )}
@@ -92,7 +92,7 @@ export function FeaturedProjectsGrid(): JSX.Element {
                 onClick={() => window.open(project.link, "_blank")}
                 className="flex text-xs items-center py-1 px-3 gap-1 md:border-gray-100 dark:border-gray-800 dark:hover:border-gray-600 md:border-2 rounded-md hover:border-gray-300 duration-300 transform"
               >
-                <LaunchIcon sx={{ fontSize: '0.7rem' }} />
+                <LaunchIcon sx={{ fontSize: "0.7rem" }} />
                 Link
               </button>
             )}
