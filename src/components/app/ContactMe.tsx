@@ -71,7 +71,7 @@ export default function ContactMe(): JSX.Element {
           <EmailIcon className="icon" sx={{ fontSize: "inherit" }} />
         </IconButton>
       </div>
-      <footer className="text-xs md:text-sm text-center text-gray-500 dark:text-gray-300 w-full absolute bottom-14 md:bottom-8">
+      <footer className="text-xs md:text-sm text-center text-gray-500 dark:text-gray-300 w-full absolute bottom-0 md:bottom-8">
         <p>&copy; {new Date().getFullYear()} Victor Yoshida. All rights reserved.</p>
       </footer>
     </motion.section>

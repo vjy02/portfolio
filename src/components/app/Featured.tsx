@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef, useEffect } from "react";
-import { FeaturedCarousel } from "./components/FeaturedCarousel";
+import { FeaturedProjectsFlex } from "./components/FeaturedProjectsFlex";
 import { motion, useScroll, useTransform } from "framer-motion";
 
 export default function Featured(): JSX.Element {
@@ -23,7 +23,7 @@ export default function Featured(): JSX.Element {
       >
         things I built.
       </h1>
-      <FeaturedCarousel />
+      <FeaturedProjectsFlex />
       <div id="featured" className="absolute -bottom-48"></div>
     </motion.section>
   );

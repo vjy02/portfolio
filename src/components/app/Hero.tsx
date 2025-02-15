@@ -26,15 +26,16 @@ export default function Home(): JSX.Element {
         transition={{ delay: 0.25 }}
       >
         <h3 className="text-xl md:text-3xl mb-2">Hello, my name is Victor.</h3>
-        <h1 className="text-3xl md:text-5xl font-semibold mb-4">
-          Software engineer at{" "}
-          <a className="bg-gradient-to-r from-[#00C4CC] to-[#5A3FEC] bg-clip-text text-transparent">
-            Canva
-          </a>
+        <h1 className="text-4xl md:text-5xl font-semibold mb-4">
+          Crafting web{" "}
+          <span className="gradient-text relative">experiences.</span>
         </h1>
-        <h4 className="text-md md:text-md font-semibold">
-          📍 Melbourne, Australia
-        </h4>
+        <div className="flex flex-col md:flex-row md:gap-10">
+          <h4 className="text-sm md:text-md font-semibold mb-4">
+            📍 Melbourne, Australia
+          </h4>
+          <h4 className="text-sm md:text-md font-semibold">💼 SWE @ Canva</h4>
+        </div>
       </motion.div>
 
       <motion.div
@@ -42,7 +43,7 @@ export default function Home(): JSX.Element {
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
         transition={{ delay: 0.5 }}
-        className="flex w-[40%] md:w-[15%] justify-between"
+        className="flex w-[45%] md:w-[15%] justify-between"
       >
         <IconButton
           aria-label="Github.com"

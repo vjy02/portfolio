@@ -107,3 +107,23 @@ div:focus::after {
     @apply bg-background text-foreground;
   }
 }
+.gradient-text {
+  background-image: linear-gradient(to right, #00C4CC, #5A3FEC);
+  background-size: 200% 100%;
+  background-position: left center;
+  -webkit-background-clip: text;
+  color: transparent;
+  animation: shimmer 2s linear infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: left center;
+  }
+  50% {
+    background-position: right center;
+  }
+  100% {
+    background-position: left center;
+  }
+}
