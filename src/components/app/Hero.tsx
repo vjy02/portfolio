@@ -33,7 +33,7 @@ export default function Home(): JSX.Element {
           </a>
         </h1>
         <h4 className="text-md md:text-md font-semibold">
-          📍 Melbourne, Victoria
+          📍 Melbourne, Australia
         </h4>
       </motion.div>
 

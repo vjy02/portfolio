@@ -1,15 +1,10 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import {
   Card,
   CardContent,
-  CardHeader,
-  CardTitle,
-  CardDescription,
-  CardFooter,
 } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
 import {
   Carousel,
   CarouselContent,
@@ -17,14 +12,15 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import Image from "next/image";
+import Link from "next/link";
 
 import culinaryAI from "../../../../public/img/culinaryAI.png";
 import hackMelb from "../../../../public/img/hackMelb.png";
 import groupSpace from "../../../../public/img/groupSpace.jpg";
-import Link from "next/link";
 
 export function FeaturedCarousel(): JSX.Element {
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+
   const featuredProjects = [
     {
       title: "CulinaryAI",
@@ -56,21 +52,29 @@ export function FeaturedCarousel(): JSX.Element {
           <CarouselItem key={index} className="basis-[80%] md:basis-[60%] md:min-h-[500px]">
             <Link href={project.link} target="_blank">
               <Card
-                className="flex flex-col px-3 py-2 bg-cover bg-center p-6 rounded-lg shadow-lg md:h-full cursor-pointer"
+                className="flex flex-col px-3 py-2 bg-cover bg-center p-6 rounded-lg md:h-full cursor-pointer transition-all duration-300 relative"
                 style={{
                   backgroundImage: `url(${project.img.src})`,
                 }}
+                onMouseOver={() => setHoveredIndex(index)}
+                onMouseOut={() => setHoveredIndex(null)}
               >
-                <CardContent className="h-[30vh] md:h-[65%]">
-                  {/* Card content goes here */}
+                <div
+                  className={`absolute inset-0 bg-black transition-opacity duration-300 rounded-lg z-0 p-8  ${
+                    hoveredIndex === index ? "opacity-50" : "opacity-0"
+                  }`}
+                />
+                <CardContent className={`z-10 h-[30vh] md:h-[65%] ${hoveredIndex === index ? "opacity-100" : "opacity-0"} transition-all duration-300`}>
+                  <h3 className="text-white font-bold">{project.title}</h3>
+                  <p className="text-white">{project.desc}</p>
                 </CardContent>
               </Card>
             </Link>
           </CarouselItem>
         ))}
       </CarouselContent>
-      <CarouselPrevious className="" />
-      <CarouselNext className="" />
+      <CarouselPrevious/>
+      <CarouselNext/>
     </Carousel>
   );
 }
