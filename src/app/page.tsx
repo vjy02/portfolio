@@ -14,12 +14,12 @@ export default function Home() {
   const heroRef = useRef<HTMLDivElement>(null);
   const featuredRef = useRef<HTMLDivElement>(null);
   const contactMeRef = useRef<HTMLDivElement>(null);
-  const experienceRef = useRef<HTMLDivElement>(null);
+  const postsRef = useRef<HTMLDivElement>(null);
 
   const heroInView = useOnScreen(heroRef);
   const featuredInView = useOnScreen(featuredRef);
   const contactMeInView = useOnScreen(contactMeRef);
-  const experienceInView = useOnScreen(experienceRef);
+  const experienceInView = useOnScreen(postsRef);
 
   // Priority check to determine which one to mark
   const currentView = heroInView
@@ -33,26 +33,12 @@ export default function Home() {
     : null;
 
   const { theme } = useTheme();
-  const [width, setWidth] = useState<number>(
-    typeof window !== "undefined" ? window.innerWidth : 1000
-  );
-  const isMobile = width <= 768;
-  function handleWindowSizeChange() {
-    setWidth(window.innerWidth);
-  }
-  useEffect(() => {
-    window.addEventListener("resize", handleWindowSizeChange);
-    return () => {
-      window.removeEventListener("resize", handleWindowSizeChange);
-    };
-  }, []);
-
   return (
     <div className="flex flex-col items-center p-10 md:p-0">
       <div ref={heroRef}>
         <Hero />
       </div>
-      <div ref={experienceRef}>
+      <div ref={postsRef}>
         <BlogPosts />
       </div>
       <div ref={featuredRef}>
