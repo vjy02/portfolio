@@ -4,7 +4,7 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import Switch from "@mui/material/Switch";
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
-import { useRouter } from 'next/navigation';
+import { useRouter } from "next/navigation";
 
 const MaterialUISwitch = styled(Switch)(({ theme }) => ({
   width: 62,
@@ -63,31 +63,7 @@ export default function Navbar({ isBlog }: { isBlog?: boolean }): JSX.Element {
     setMounted(true);
   }, []);
 
-  useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  });
-
   if (!mounted) return <></>;
-
-  function handleScroll() {
-    const currentScrollPos = window.scrollY;
-    if (currentScrollPos > prevScrollPos) {
-      setVisible(false);
-    } else if (currentScrollPos === 0) {
-      setVisible(true);
-    }
-    setPrevScrollPos(currentScrollPos);
-  }
-
-  const scrolltoHash = function (element_id: string) {
-    const element = document.getElementById(element_id);
-    element?.scrollIntoView({
-      behavior: "smooth",
-      block: "end",
-      inline: "nearest",
-    });
-  };
 
   return (
     <nav
@@ -111,63 +87,26 @@ export default function Navbar({ isBlog }: { isBlog?: boolean }): JSX.Element {
 
         {/* DESKTOP */}
         <div className="hidden md:flex justify-between gap-10 items-center">
-          {isBlog ? (
-            <>
-              <div
-                onClick={() => router.push("/")}
-                className={`${
-                  resolvedTheme === "light" || !resolvedTheme
-                    ? "after:bg-black"
-                    : "after:bg-white"
-                } hover:cursor-pointer underline-animation`}
-              >
-                Home
-              </div>
-              <div
-                onClick={() => router.push("/blog")}
-                className={`${
-                  resolvedTheme === "light" || !resolvedTheme
-                    ? "after:bg-black"
-                    : "after:bg-white"
-                } hover:cursor-pointer underline-animation`}
-              >
-                Blog
-              </div>
-            </>
-          ) : (
-            <>
-              <div
-                onClick={() => scrolltoHash("experience")}
-                className={`${
-                  resolvedTheme === "light" || !resolvedTheme
-                    ? "after:bg-black"
-                    : "after:bg-white"
-                } hover:cursor-pointer underline-animation`}
-              >
-                Posts
-              </div>
-              <div
-                onClick={() => scrolltoHash("featured")}
-                className={`${
-                  resolvedTheme === "light" || !resolvedTheme
-                    ? "after:bg-black"
-                    : "after:bg-white"
-                } hover:cursor-pointer underline-animation`}
-              >
-                Projects
-              </div>
-              <div
-                onClick={() => scrolltoHash("contact-me")}
-                className={`${
-                  resolvedTheme === "light" || !resolvedTheme
-                    ? "after:bg-black"
-                    : "after:bg-white"
-                } hover:cursor-pointer underline-animation`}
-              >
-                Contact
-              </div>
-            </>
-          )}
+          <div
+            onClick={() => router.push("/")}
+            className={`${
+              resolvedTheme === "light" || !resolvedTheme
+                ? "after:bg-black"
+                : "after:bg-white"
+            } hover:cursor-pointer underline-animation`}
+          >
+            Home
+          </div>
+          <div
+            onClick={() => router.push("/blog")}
+            className={`${
+              resolvedTheme === "light" || !resolvedTheme
+                ? "after:bg-black"
+                : "after:bg-white"
+            } hover:cursor-pointer underline-animation`}
+          >
+            Blog
+          </div>
         </div>
       </div>
     </nav>
