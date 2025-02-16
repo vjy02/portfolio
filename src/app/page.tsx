@@ -9,6 +9,7 @@ import useOnScreen from "../hooks/onView";
 import { useEffect, useRef, useState } from "react";
 import { useTheme } from "next-themes";
 import BlogPosts from "../components/app/BlogPosts";
+import MainLayoutWrapper from "./MainLayoutWrapper";
 
 export default function Home() {
   const heroRef = useRef<HTMLDivElement>(null);
@@ -34,86 +35,88 @@ export default function Home() {
 
   const { theme } = useTheme();
   return (
-    <div className="flex flex-col items-center p-10 md:p-0">
-      <div ref={heroRef}>
-        <Hero />
-      </div>
-      <div ref={postsRef}>
-        <BlogPosts />
-      </div>
-      <div ref={featuredRef}>
-        <Featured />
-      </div>
-      <div ref={contactMeRef}>
-        <ContactMe />
-      </div>
-      {/* Page Indicator Component */}
-      <div
-        className="hidden md:flex fixed -top-10 right-[24%] px-0 py-[10px] h-full items-center justify-between"
-      >
-        <div className="block list-none m-0 p-0">
-          <a
-            className={`block px-[2px] mx-0 my-[2px] ${
-              theme === "dark" ? "bg-gray-500" : "bg-gray-200"
-            } transition-all duration-300 ease-in-out ${
-              currentView === "hero"
-                ? `py-[19px] ${
-                    theme === "dark"
-                      ? "bg-white py-[30px]"
-                      : "bg-gray-900 py-[30px]"
-                  }`
-                : "py-[15px]"
-            }`}
-          >
-            <span></span>
-          </a>
-          <a
-            className={`block px-[2px] mx-0 my-[2px] ${
-              theme === "dark" ? "bg-gray-500" : "bg-gray-200"
-            } transition-all duration-300 ease-in-out ${
-              currentView === "experience"
-                ? `py-[19px] ${
-                    theme === "dark"
-                      ? "bg-white py-[30px]"
-                      : "bg-gray-900 py-[30px]"
-                  }`
-                : "py-[15px]"
-            }`}
-          >
-            <span></span>
-          </a>
-          <a
-            className={`block px-[2px] mx-0 my-[2px] ${
-              theme === "dark" ? "bg-gray-500" : "bg-gray-200"
-            } transition-all duration-300 ease-in-out ${
-              currentView === "featured"
-                ? `py-[19px] ${
-                    theme === "dark"
-                      ? "bg-white py-[30px]"
-                      : "bg-gray-900 py-[30px]"
-                  }`
-                : "py-[15px]"
-            }`}
-          >
-            <span></span>
-          </a>
-          <a
-            className={`block px-[2px] mx-0 my-[2px] ${
-              theme === "dark" ? "bg-gray-500" : "bg-gray-200"
-            } transition-all duration-300 ease-in-out ${
-              currentView === "contact"
-                ? `py-[19px] ${
-                    theme === "dark"
-                      ? "bg-white py-[30px]"
-                      : "bg-gray-900 py-[30px]"
-                  }`
-                : "py-[15px]"
-            }`}
-          >
-            <span></span>
-          </a>
+    <MainLayoutWrapper>
+      <div className="flex flex-col items-center p-10 md:p-0">
+        <div ref={heroRef}>
+          <Hero />
+        </div>
+        <div ref={postsRef}>
+          <BlogPosts />
+        </div>
+        <div ref={featuredRef}>
+          <Featured />
+        </div>
+        <div ref={contactMeRef}>
+          <ContactMe />
+        </div>
+        {/* Page Indicator Component */}
+        <div
+          className="hidden md:flex fixed -top-10 right-[24%] px-0 py-[10px] h-full items-center justify-between"
+        >
+          <div className="block list-none m-0 p-0">
+            <a
+              className={`block px-[2px] mx-0 my-[2px] ${
+                theme === "dark" ? "bg-gray-500" : "bg-gray-200"
+              } transition-all duration-300 ease-in-out ${
+                currentView === "hero"
+                  ? `py-[19px] ${
+                      theme === "dark"
+                        ? "bg-white py-[30px]"
+                        : "bg-gray-900 py-[30px]"
+                    }`
+                  : "py-[15px]"
+              }`}
+            >
+              <span></span>
+            </a>
+            <a
+              className={`block px-[2px] mx-0 my-[2px] ${
+                theme === "dark" ? "bg-gray-500" : "bg-gray-200"
+              } transition-all duration-300 ease-in-out ${
+                currentView === "experience"
+                  ? `py-[19px] ${
+                      theme === "dark"
+                        ? "bg-white py-[30px]"
+                        : "bg-gray-900 py-[30px]"
+                    }`
+                  : "py-[15px]"
+              }`}
+            >
+              <span></span>
+            </a>
+            <a
+              className={`block px-[2px] mx-0 my-[2px] ${
+                theme === "dark" ? "bg-gray-500" : "bg-gray-200"
+              } transition-all duration-300 ease-in-out ${
+                currentView === "featured"
+                  ? `py-[19px] ${
+                      theme === "dark"
+                        ? "bg-white py-[30px]"
+                        : "bg-gray-900 py-[30px]"
+                    }`
+                  : "py-[15px]"
+              }`}
+            >
+              <span></span>
+            </a>
+            <a
+              className={`block px-[2px] mx-0 my-[2px] ${
+                theme === "dark" ? "bg-gray-500" : "bg-gray-200"
+              } transition-all duration-300 ease-in-out ${
+                currentView === "contact"
+                  ? `py-[19px] ${
+                      theme === "dark"
+                        ? "bg-white py-[30px]"
+                        : "bg-gray-900 py-[30px]"
+                    }`
+                  : "py-[15px]"
+              }`}
+            >
+              <span></span>
+            </a>
+          </div>
         </div>
       </div>
-    </div>
+    </MainLayoutWrapper>
   );
 }

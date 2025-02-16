@@ -4,6 +4,7 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import Switch from "@mui/material/Switch";
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
+import { useRouter } from 'next/navigation';
 
 const MaterialUISwitch = styled(Switch)(({ theme }) => ({
   width: 62,
@@ -51,16 +52,16 @@ const MaterialUISwitch = styled(Switch)(({ theme }) => ({
   },
 }));
 
-export default function Navbar(): JSX.Element {
+export default function Navbar({ isBlog }: { isBlog?: boolean }): JSX.Element {
   const [prevScrollPos, setPrevScrollPos] = useState(0);
   const [visible, setVisible] = useState(true);
   const { setTheme, resolvedTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
+  const router = useRouter();
 
   useEffect(() => {
     setMounted(true);
-    setTheme("light");
-  }, [setTheme]);
+  }, []);
 
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
@@ -92,7 +93,7 @@ export default function Navbar(): JSX.Element {
     <nav
       className={`${
         visible ? "md:opacity-100" : "md:opacity-0 md:pointer-events-none"
-      } z-10 h-[12vh] transition ease-in-out delay-100 w-[95vw] md:w-[50vw] max-w-full flex justify-center items-center absolute md:fixed left-1/2 top-0 transform -translate-x-1/2`}
+      } z-10 h-[12vh] transition ease-in-out delay-100 w-[95vw] md:w-[50vw] md:max-w-[50vw] flex justify-center items-center absolute md:absolute left-1/2 top-0 transform -translate-x-1/2`}
     >
       <div className="flex w-full justify-between items-center pl-5 md:pl-0">
         <FormControlLabel
@@ -110,36 +111,63 @@ export default function Navbar(): JSX.Element {
 
         {/* DESKTOP */}
         <div className="hidden md:flex justify-between gap-10 items-center">
-          <div
-            onClick={() => scrolltoHash("experience")}
-            className={`${
-              resolvedTheme === "light" || !resolvedTheme
-                ? "after:bg-black"
-                : "after:bg-white"
-            } hover:cursor-pointer underline-animation`}
-          >
-            Posts
-          </div>
-          <div
-            onClick={() => scrolltoHash("featured")}
-            className={`${
-              resolvedTheme === "light" || !resolvedTheme
-                ? "after:bg-black"
-                : "after:bg-white"
-            } hover:cursor-pointer underline-animation`}
-          >
-            Projects
-          </div>
-          <div
-            onClick={() => scrolltoHash("contact-me")}
-            className={`${
-              resolvedTheme === "light" || !resolvedTheme
-                ? "after:bg-black"
-                : "after:bg-white"
-            } hover:cursor-pointer underline-animation`}
-          >
-            Contact
-          </div>
+          {isBlog ? (
+            <>
+              <div
+                onClick={() => router.push("/")}
+                className={`${
+                  resolvedTheme === "light" || !resolvedTheme
+                    ? "after:bg-black"
+                    : "after:bg-white"
+                } hover:cursor-pointer underline-animation`}
+              >
+                Home
+              </div>
+              <div
+                onClick={() => router.push("/blog")}
+                className={`${
+                  resolvedTheme === "light" || !resolvedTheme
+                    ? "after:bg-black"
+                    : "after:bg-white"
+                } hover:cursor-pointer underline-animation`}
+              >
+                Blog
+              </div>
+            </>
+          ) : (
+            <>
+              <div
+                onClick={() => scrolltoHash("experience")}
+                className={`${
+                  resolvedTheme === "light" || !resolvedTheme
+                    ? "after:bg-black"
+                    : "after:bg-white"
+                } hover:cursor-pointer underline-animation`}
+              >
+                Posts
+              </div>
+              <div
+                onClick={() => scrolltoHash("featured")}
+                className={`${
+                  resolvedTheme === "light" || !resolvedTheme
+                    ? "after:bg-black"
+                    : "after:bg-white"
+                } hover:cursor-pointer underline-animation`}
+              >
+                Projects
+              </div>
+              <div
+                onClick={() => scrolltoHash("contact-me")}
+                className={`${
+                  resolvedTheme === "light" || !resolvedTheme
+                    ? "after:bg-black"
+                    : "after:bg-white"
+                } hover:cursor-pointer underline-animation`}
+              >
+                Contact
+              </div>
+            </>
+          )}
         </div>
       </div>
     </nav>
