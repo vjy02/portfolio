@@ -56,7 +56,7 @@ export function FeaturedProjectsGrid(): JSX.Element {
   ];
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-10 w-[90%] self-start">
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-10 w-full md:w-[90%] self-start">
       {featuredProjects.map((project, index) => (
         <div
           key={index + project.title}
@@ -90,7 +90,7 @@ export function FeaturedProjectsGrid(): JSX.Element {
             {project.link && (
               <button
                 onClick={() => window.open(project.link, "_blank")}
-                className="flex text-xs items-center py-1 px-3 gap-1 md:border-gray-100 dark:border-gray-800 dark:hover:border-gray-600 md:border-2 rounded-md hover:border-gray-300 duration-300 transform"
+                className="flex text-xs items-center py-1 px-3 gap-1 border border-gray-200 dark:border-gray-800 dark:hover:border-gray-600 md:border-2 rounded-md hover:border-gray-300 duration-300 transform"
               >
                 <LaunchIcon sx={{ fontSize: "0.7rem" }} />
                 Link
