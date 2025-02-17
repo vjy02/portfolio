@@ -1,6 +1,5 @@
 "use client"
 
-import ExperiencesTimeline from "./components/ExperiencesTimeline";
 import Image from "next/image";
 import BlogPostSummary from "./components/BlogPostSummary";
 import { motion, useScroll, useTransform } from "framer-motion";
