@@ -17,7 +17,7 @@ export default function Experience() {
   const [posts, setPosts] = useState<PostData[]>([]);
   useEffect(() => {
     const fetchPosts = async () => {
-      const res = await fetch('/api/posts');
+      const res = await fetch('/api/posts/all-metadata');
       if (res.ok) {
         const data = await res.json();
         setPosts(data);
@@ -38,7 +38,7 @@ export default function Experience() {
       >
         things I wrote.
       </h1>
-      <BlogPostSummary postsData={posts.slice(-3).reverse()}/>
+      <BlogPostSummary postsData={posts} limit={true}/>
     </motion.section>
   );
 }

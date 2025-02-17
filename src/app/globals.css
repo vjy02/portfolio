@@ -1,7 +1,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
- 
+@plugin "@tailwindcss/typography";
+
 /* Underline styles */
 .underline-animation {
     display: block;
