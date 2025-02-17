@@ -37,7 +37,7 @@ export function FeaturedProjectsGrid(): JSX.Element {
   ];
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-3 w-full justify-items-center">
+    <div className="grid grid-cols-1 md:grid-cols-3 w-full justify-items-center gap-16 md:gap-0">
       {featuredProjects.map((project, index) => (
         <div
           key={index + project.title}

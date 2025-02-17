@@ -18,7 +18,7 @@ export default function Featured(): JSX.Element {
       style={{ opacity: scaleValue }}
     >
       <h1
-        className="relative text-3xl md:text-5xl mt-24 mb-12 md:mt-32 md:mb-24"
+        className="relative text-3xl md:text-5xl mt-12 mb-12 md:mt-32 md:mb-24"
         ref={ref}
       >
         things I built.
