@@ -24,7 +24,6 @@ export default function Featured(): JSX.Element {
         things I built.
       </h1>
       <FeaturedProjectsGrid />
-      <div id="featured" className="absolute -bottom-48"></div>
     </motion.section>
   );
 }
