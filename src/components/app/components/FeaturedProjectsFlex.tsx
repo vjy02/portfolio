@@ -1,22 +1,3 @@
-"use client";
-
-import { useState, useEffect } from "react";
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-  CardDescription,
-  CardFooter,
-} from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel";
 import Image from "next/image";
 
 import culinaryAI from "../../../../public/img/culinaryAI.png";
@@ -56,11 +37,11 @@ export function FeaturedProjectsGrid(): JSX.Element {
   ];
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-10 w-full md:w-[90%] self-start">
+    <div className="grid grid-cols-1 md:grid-cols-3 w-full justify-items-center">
       {featuredProjects.map((project, index) => (
         <div
           key={index + project.title}
-          className="cursor-default h-64 md:h-80 md:w-46 2xl:h-96 2xl:w-46 flex flex-col gap-2 md:justify-between md:p-4 md:border-transparent dark:hover:border-gray-600 md:border-2 rounded-md hover:border-gray-300 hover:-translate-y-2 transition-all ease-in-out duration-300 transform border-dashed"
+          className="cursor-default h-64 md:h-80 md:w-46 2xl:h-96 2xl:w-56 flex flex-col gap-2 md:justify-between md:p-4 md:border-transparent dark:hover:border-gray-600 md:border-2 rounded-md hover:border-gray-300 hover:-translate-y-2 transition-all ease-in-out duration-300 transform border-dashed"
         >
           <div className="h-3/5 md:h-2/6 relative border rounded-xl">
             <Image

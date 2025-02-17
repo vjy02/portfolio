@@ -10,6 +10,7 @@ import { useEffect, useRef, useState } from "react";
 import { useTheme } from "next-themes";
 import BlogPosts from "../components/app/BlogPosts";
 import MainLayoutWrapper from "./MainLayoutWrapper";
+import { getAllPostSlugs, getPostData } from "@/lib/markdown";
 
 export default function Home() {
   const heroRef = useRef<HTMLDivElement>(null);
@@ -51,7 +52,7 @@ export default function Home() {
         </div>
         {/* Page Indicator Component */}
         <div
-          className="hidden md:flex fixed -top-10 right-[24%] px-0 py-[10px] h-full items-center justify-between"
+          className="hidden md:flex fixed -top-10 right-[20%] px-0 py-[10px] h-full items-center justify-between"
         >
           <div className="block list-none m-0 p-0">
             <a

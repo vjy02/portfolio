@@ -1,19 +1,36 @@
+"use client"
+
 import ExperiencesTimeline from "./components/ExperiencesTimeline";
 import Image from "next/image";
 import BlogPostSummary from "./components/BlogPostSummary";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
+import { getAllPostSlugs, getPostData } from "@/lib/markdown";
+import { PostData } from "@/types/post";
 
-export default function Experience(): JSX.Element {
+export default function Experience() {
   const ref = useRef(null);
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start end", "end start"],
   });
   let scaleValue = useTransform(scrollYProgress, [0, 0.7], ["0", "1"]);
+  const [posts, setPosts] = useState<PostData[]>([]);
+  useEffect(() => {
+    const fetchPosts = async () => {
+      const res = await fetch('/api/posts');
+      if (res.ok) {
+        const data = await res.json();
+        setPosts(data);
+      } else {
+        console.error('Error fetching posts');
+      }
+    };
+    fetchPosts();
+  }, []);
   return (
     <motion.section
-      className="min-h-[55vh] lg:h-fit w-[80vw] md:w-[50vw] flex flex-col justify-between items-center relative"
+      className="min-h-[55vh] lg:h-fit w-[80vw] md:w-[50vw] flex flex-col justify-start items-center relative"
       style={{ opacity: scaleValue }}
     >
       <h1
@@ -22,8 +39,7 @@ export default function Experience(): JSX.Element {
       >
         things I wrote.
       </h1>
-      <BlogPostSummary />
-      <div id="experience" className="absolute -bottom-48"></div>
+      <BlogPostSummary postsData={posts.slice(-3).reverse()}/>
     </motion.section>
   );
 }
