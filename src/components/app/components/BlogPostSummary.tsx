@@ -9,7 +9,7 @@ export default function BlogPostSummary({
   limit,
 }: {
   postsData: Partial<PostData>[];
-  limit: boolean;
+  limit?: boolean;
 }) {
   if (!postsData) return <></>;
   postsData = postsData.sort((a, b) =>
