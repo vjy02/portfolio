@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import Image from "next/image";
 import BlogPostSummary from "./components/BlogPostSummary";
@@ -6,6 +6,8 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef, useEffect, useState } from "react";
 import { getAllPostSlugs, getPostData } from "@/lib/markdown";
 import { PostData } from "@/types/post";
+import BlogPostPill from "./components/BlogPostPill";
+import BlogPostPillLoading from "./components/BlogPostPillLoading,";
 
 export default function Experience() {
   const ref = useRef(null);
@@ -17,12 +19,12 @@ export default function Experience() {
   const [posts, setPosts] = useState([]);
   useEffect(() => {
     const fetchPosts = async () => {
-      const res = await fetch('/api/posts');
+      const res = await fetch("/api/posts");
       if (res.ok) {
         const data = await res.json();
         setPosts(data);
       } else {
-        console.error('Error fetching posts');
+        console.error("Error fetching posts");
       }
     };
     fetchPosts();
@@ -38,7 +40,11 @@ export default function Experience() {
       >
         things I wrote.
       </h1>
-      <BlogPostSummary postsData={posts} limit={true}/>
+      {posts.length === 0 ? (
+        <BlogPostPillLoading />
+      ) : (
+        <BlogPostSummary postsData={posts} limit={true} />
+      )}
     </motion.section>
   );
 }

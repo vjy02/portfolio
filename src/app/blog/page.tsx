@@ -1,20 +1,20 @@
-"use client"
+"use client";
 
 import BlogPostSummary from "@/components/app/components/BlogPostSummary";
 import { getAllPostSlugs, getPostData } from "@/lib/markdown";
 import { useEffect, useState } from "react";
 
 export default function Page() {
-  const [blogPosts, setBlogPosts] = useState(null);
+  const [blogPosts, setBlogPosts] = useState([]);
 
   useEffect(() => {
     const fetchContent = async () => {
-      const res = await fetch(`/api/posts`); 
+      const res = await fetch(`/api/posts`);
       const data = await res.json();
       setBlogPosts(data);
     };
     fetchContent();
-  },[])
+  }, []);
 
   return (
     <section className="flex flex-col w-[80vw] md:w-[50vw] h-fit mt-[10vh] items-center justify-center mx-auto">
@@ -26,7 +26,11 @@ export default function Page() {
           still working on filling this page up!
         </p>
       </div>
-      <BlogPostSummary postsData={blogPosts} />
+      {blogPosts.length !== 0 ? (
+        <BlogPostSummary postsData={blogPosts} />
+      ) : (
+        <BlogPostSummary postsData={blogPosts} isLoading={true} />
+      )}
     </section>
   );
 }
