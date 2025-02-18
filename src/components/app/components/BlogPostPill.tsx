@@ -17,7 +17,7 @@ export default function BlogPostPill({ postData }: { postData: any }) {
     >
       <div
         className={`max-w-[75%] md:w-[80%] md:max-w-[80%] transition-all ease-in-out border-transparent border-l-4 pl-4 ${
-          isHover ? "translate-x-5 border-inherit" : ""
+          isHover ? "translate-x-5 border-gray-400 dark:border-slate-300" : ""
         }`}
       >
         <h3 className="font-bold text-sm md:text-xl">{postData.title}</h3>
