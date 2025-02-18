@@ -9,18 +9,23 @@ export default function Page() {
 
   useEffect(() => {
     const fetchContent = async () => {
-      const res = await fetch(`/api/posts?slug=${pathname}`); 
+      const res = await fetch(`/api/posts?slug=${pathname}`);
       const result = await res.json();
       setContent(result.htmlContent);
     };
     fetchContent();
   }, [pathname]);
 
-  if (!content) return <div>Loading...</div>;
-
   return (
-    <div className="flex flex-col w-[80vw] md:w-[50vw] min-h-[35vh] md:h-fit mt-[10vh] justify-center mx-auto">
-      <article className="prose lg:prose-lg dark:prose-invert" dangerouslySetInnerHTML={{ __html: content }} />
+    <div className="flex flex-col w-[80vw] md:w-[50vw] min-h-[35vh] md:h-fit mt-32 justify-center mx-auto items-center">
+      {!content ? (
+        <h3>Loading blog post...</h3>
+      ) : (
+        <article
+          className="prose lg:prose-lg dark:prose-invert"
+          dangerouslySetInnerHTML={{ __html: content }}
+        />
+      )}
     </div>
   );
 }

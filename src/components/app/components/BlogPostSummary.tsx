@@ -16,7 +16,7 @@ export default function BlogPostSummary({
     postsData = postsData.slice(0, 3);
   }
   return (
-    <div className="flex flex-col justify-start items-center w-full gap-10 relative">
+    <div className="flex flex-col justify-start items-center w-full gap-10 relative mb-6 md:mb-16">
       {postsData.map((post: Partial<PostData>, index: number) => {
         return (
           <BlogPostPill key={index + (post.title ?? "")} postData={post} />
