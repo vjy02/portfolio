@@ -8,13 +8,10 @@ export default function BlogPostSummary({
   postsData,
   limit,
 }: {
-  postsData: Partial<PostData>[];
+  postsData: any;
   limit?: boolean;
 }) {
   if (!postsData) return <></>;
-  postsData = postsData.sort((a, b) =>
-    dayjs(a.date).isAfter(dayjs(b.date)) ? -1 : 1
-  );
   if (limit) {
     postsData = postsData.slice(0, 3);
   }

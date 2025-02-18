@@ -1,9 +1,20 @@
+"use client"
+
 import BlogPostSummary from "@/components/app/components/BlogPostSummary";
 import { getAllPostSlugs, getPostData } from "@/lib/markdown";
+import { useEffect, useState } from "react";
 
-export default async function Page() {
-  const slugs = await getAllPostSlugs();
-  const allPosts = await Promise.all(slugs.map((slug) => getPostData(slug)));
+export default function Page() {
+  const [blogPosts, setBlogPosts] = useState(null);
+
+  useEffect(() => {
+    const fetchContent = async () => {
+      const res = await fetch(`/api/posts`); 
+      const data = await res.json();
+      setBlogPosts(data);
+    };
+    fetchContent();
+  },[])
 
   return (
     <section className="flex flex-col w-[80vw] md:w-[50vw] h-fit mt-[10vh] items-center justify-center mx-auto">
@@ -15,7 +26,7 @@ export default async function Page() {
           still working on filling this page up!
         </p>
       </div>
-      <BlogPostSummary postsData={allPosts} />
+      <BlogPostSummary postsData={blogPosts} />
     </section>
   );
 }

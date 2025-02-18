@@ -9,9 +9,9 @@ export default function Page() {
 
   useEffect(() => {
     const fetchContent = async () => {
-      const res = await fetch(`/api/posts/data?slug=${pathname}`); 
+      const res = await fetch(`/api/posts?slug=${pathname}`); 
       const result = await res.json();
-      setContent(result.content);
+      setContent(result.htmlContent);
     };
     fetchContent();
   }, [pathname]);

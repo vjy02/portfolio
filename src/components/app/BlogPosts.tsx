@@ -14,10 +14,10 @@ export default function Experience() {
     offset: ["start end", "end start"],
   });
   let scaleValue = useTransform(scrollYProgress, [0, 0.7], ["0", "1"]);
-  const [posts, setPosts] = useState<PostData[]>([]);
+  const [posts, setPosts] = useState([]);
   useEffect(() => {
     const fetchPosts = async () => {
-      const res = await fetch('/api/posts/all-metadata');
+      const res = await fetch('/api/posts');
       if (res.ok) {
         const data = await res.json();
         setPosts(data);
