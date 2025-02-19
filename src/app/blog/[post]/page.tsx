@@ -17,12 +17,12 @@ export default function Page() {
   }, [pathname]);
 
   return (
-    <div className="flex flex-col w-[80vw] md:w-[50vw] min-h-[35vh] md:h-fit mt-32 justify-center mx-auto items-center">
+    <div className="flex flex-col w-[80vw] md:w-[50vw] min-h-[35vh] md:h-fit mt-32 justify-center mx-auto items-center md:mb-28">
       {!content ? (
         <h3>Loading blog post...</h3>
       ) : (
         <article
-          className="prose lg:prose-lg dark:prose-invert"
+          className="prose dark:prose-invert"
           dangerouslySetInnerHTML={{ __html: content }}
         />
       )}
