@@ -22,7 +22,7 @@ export default function Page() {
         <h3>Loading blog post...</h3>
       ) : (
         <article
-          className="prose dark:prose-invert"
+          className="prose prose-sm md:prose-base dark:prose-invert"
           dangerouslySetInnerHTML={{ __html: content }}
         />
       )}
