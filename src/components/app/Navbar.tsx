@@ -69,7 +69,7 @@ export default function Navbar({ isBlog }: { isBlog?: boolean }): JSX.Element {
     <nav
       className={`${
         visible ? "md:opacity-100" : "md:opacity-0 md:pointer-events-none"
-      } z-10 h-[12vh] transition ease-in-out delay-100 w-[80vw] md:w-[50vw] md:max-w-[50vw] flex justify-center items-center absolute md:absolute left-1/2 top-0 transform -translate-x-1/2`}
+      } z-10 h-[12vh] transition ease-in-out delay-100 w-[85vw] md:w-[50vw] md:max-w-[50vw] flex justify-center items-center absolute md:absolute left-1/2 top-0 transform -translate-x-1/2`}
     >
       <div className="flex w-full justify-between items-center">
         <FormControlLabel

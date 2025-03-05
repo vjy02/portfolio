@@ -17,8 +17,8 @@ export default function Page() {
   }, []);
 
   return (
-    <section className="flex flex-col w-[80vw] md:w-[50vw] h-fit mt-[10vh] items-center justify-center mx-auto">
-      <div className="mb-16 mt-8 md:mt-16 flex flex-col gap-4 items-center">
+    <section className="flex flex-col w-[85vw] md:w-[50vw] h-fit mt-[10vh] items-center justify-center mx-auto">
+      <div className="mb-16 mt-12 md:mt-16 flex flex-col gap-4 items-center">
         <h1 className="relative text-3xl md:text-5xl">
           hi, welcome to my blog.
         </h1>

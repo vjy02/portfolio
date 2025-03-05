@@ -31,7 +31,7 @@ export default function Experience() {
   }, []);
   return (
     <motion.section
-      className="min-h-[55vh] lg:h-fit w-[80vw] md:w-[50vw] flex flex-col justify-start items-center relative"
+      className="min-h-[55vh] lg:h-fit w-[85vw] md:w-[50vw] flex flex-col justify-start items-center relative"
       style={{ opacity: scaleValue }}
     >
       <h1
