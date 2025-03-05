@@ -40,11 +40,7 @@ export default function Experience() {
       >
         things I wrote.
       </h1>
-      {posts.length === 0 ? (
-        <BlogPostPillLoading />
-      ) : (
-        <BlogPostSummary postsData={posts} limit={true} />
-      )}
+      <BlogPostSummary postsData={posts} limit={true} isLoading={posts.length === 0}/>
     </motion.section>
   );
 }
