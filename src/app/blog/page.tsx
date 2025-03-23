@@ -18,7 +18,7 @@ export default function Page() {
 
   return (
     <section className="flex flex-col w-[85vw] md:w-[50vw] h-fit mt-[10vh] items-center justify-center mx-auto">
-      <div className="mb-16 mt-12 md:mt-16 flex flex-col gap-4 items-start w-full md:items-center">
+      <div className="mb-16 mt-12 md:mt-16 flex flex-col gap-4 items-start w-11/12 md:w-full md:items-center">
         <h1 className="relative text-3xl md:text-5xl">
           hi, welcome to my blog.
         </h1>
