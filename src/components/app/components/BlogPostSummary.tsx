@@ -22,9 +22,11 @@ export default function BlogPostSummary({
     <div className="flex flex-col justify-start items-center w-full gap-10 relative mb-6 md:mb-16">
       {isLoading ? (
         <div className="flex flex-col gap-10 w-full">
-          {Array(3).fill(<BlogPostPillLoading />).map((loadingPill) => {
-            return loadingPill
-          })}
+          {Array(3)
+            .fill(null)
+            .map((_, index) => (
+              <BlogPostPillLoading key={index} />
+            ))}
         </div>
       ) : (
         <>

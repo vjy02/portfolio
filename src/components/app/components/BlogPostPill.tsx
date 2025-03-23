@@ -12,14 +12,14 @@ export default function BlogPostPill({ postData }: { postData: any }) {
       onClick={() => router.push(`blog/${postData.slug}`)}
     >
       <div
-        className="max-w-[75%] md:w-[80%] md:max-w-[80%] transition-all ease-in-out border-transparent border-0 border-solid border-l-4 pl-4 hover:translate-x-5 hover:border-gray-400 hover:dark:border-slate-300"
+        className="max-w-[82%] md:w-[80%] md:max-w-[80%] transition-all ease-in-out border-transparent md:border-0 md:border-solid md:border-l-4 md:pl-4 md:hover:translate-x-5 md:hover:border-gray-400 md:hover:dark:border-slate-300"
       >
         <h3 className="font-bold text-sm md:text-xl">{postData.title}</h3>
-        <p className="text-xs md:text-base">{postData.description}</p>
+        <p className="text-xs md:text-base mt-1">{postData.description}</p>
       </div>
-      <p className="ml-auto text-xs md:text-base">
+      <h3 className="ml-auto text-xs md:text-base">
         {dayjs(postData.date).format("MM/YYYY")}
-      </p>
+      </h3>
     </div>
   );
 }
