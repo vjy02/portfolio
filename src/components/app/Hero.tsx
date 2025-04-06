@@ -19,11 +19,8 @@ export default function Home(): JSX.Element {
       id="hero"
       className="flex flex-col w-[80vw] md:w-[50vw] min-h-[35vh] md:h-[60vh] mt-[10vh] md:mt-0 gap-4 md:gap-5 justify-end"
     >
-      <motion.div
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true }}
-        transition={{ delay: 0.25 }}
+      <div
+
       >
         <h3 className="text-xl md:text-3xl mb-2">Hello, my name is Victor.</h3>
         <h1 className="text-4xl md:text-5xl font-semibold mb-4">
@@ -36,13 +33,9 @@ export default function Home(): JSX.Element {
           </h4>
           <h4 className="text-sm md:text-md font-semibold">💼 SWE @ Canva</h4>
         </div>
-      </motion.div>
+      </div>
 
-      <motion.div
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true }}
-        transition={{ delay: 0.5 }}
+      <div
         className="flex w-[45%] md:w-[15%] justify-between"
       >
         <IconButton
@@ -87,13 +80,9 @@ export default function Home(): JSX.Element {
         >
           <EmailIcon className="icon" />
         </IconButton>
-      </motion.div>
+      </div>
 
-      <motion.div
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true }}
-        transition={{ delay: 0.75 }}
+      <div
       >
         <Button
           variant="ring"
@@ -108,7 +97,7 @@ export default function Home(): JSX.Element {
           <FileTextIcon className="mr-2 h-4 w-4" />
           Resume
         </Button>
-      </motion.div>
+      </div>
     </section>
   );
 }
