@@ -3,6 +3,10 @@
 @tailwind utilities;
 @plugin "@tailwindcss/typography";
 
+html {
+  scrollbar-gutter: stable;
+}
+
 /* Underline styles */
 .underline-animation {
     display: block;

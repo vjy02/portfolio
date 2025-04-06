@@ -37,7 +37,7 @@ export default function Home() {
   const { theme } = useTheme();
   return (
     <MainLayoutWrapper>
-      <div className="flex flex-col items-center p-10 md:p-0">
+      <div className="flex flex-col items-center p-10 md:p-0" style={{scrollbarGutter: "stable"}}>
         <div ref={heroRef}>
           <Hero />
         </div>
