@@ -1,11 +1,13 @@
 import type { Metadata } from "next";
-import { Sora } from "next/font/google";
-import { Footer } from "./_components/Footer";
+import { IBM_Plex_Mono } from "next/font/google";
+import { Footer } from "@/components/Footer";
+import { Navbar } from "@/components/Navbar";
 import "./globals.css";
 
-const sora = Sora({
-  variable: "--font-sora",
+const ibmPlexMono = IBM_Plex_Mono({
   subsets: ["latin"],
+  variable: "--font-ibm-plex-mono",
+  weight: ["100", "200", "300", "400", "500", "600", "700"],
 });
 
 export const metadata: Metadata = {
@@ -21,8 +23,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${sora.variable} antialiased max-w-3xl mx-auto w-full min-h-screen`}
+        className={`${ibmPlexMono.variable} antialiased max-w-xl mx-auto w-full min-h-screen px-8 py-3`}
       >
+        <Navbar />
         {children}
         <Footer />
       </body>
