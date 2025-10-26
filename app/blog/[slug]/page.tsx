@@ -1,5 +1,7 @@
 "use client";
 
+export const dynamic = "force-dynamic";
+
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 
@@ -40,7 +42,7 @@ export default function Page() {
 
   return (
     <article
-      className="prose prose-sm pt-4 dark:prose-invert"
+      className="prose prose-sm dark:prose-invert"
       dangerouslySetInnerHTML={{ __html: blogPost.htmlContent }}
     />
   );
