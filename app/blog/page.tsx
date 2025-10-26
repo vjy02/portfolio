@@ -9,11 +9,7 @@ type BlogPost = {
 export const revalidate = 3600;
 
 export default async function Page() {
-  const baseUrl = process.env.VERCEL_URL
-    ? `https://${process.env.VERCEL_URL}`
-    : "http://localhost:3000";
-
-  const res = await fetch(`${baseUrl}/api/posts`, {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE}/api/posts`, {
     next: { revalidate: 3600 },
   });
   const blogPosts: BlogPost[] = await res.json();
