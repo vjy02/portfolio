@@ -1,5 +1,3 @@
-export const dynamic = "force-dynamic";
-
 import { BlogCard } from "@/components/BlogCard";
 
 type BlogPost = {

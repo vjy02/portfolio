@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import { NextResponse } from 'next/server';
 import { Client } from '@notionhq/client';
 import { NotionToMarkdown } from 'notion-to-md';
