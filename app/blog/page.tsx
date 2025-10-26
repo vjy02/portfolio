@@ -23,8 +23,8 @@ export default async function Page() {
   }
 
   return (
-    <div className="pt-4 flex flex-col gap-6">
-      <h1 className="text-2xl font-bold mb-2">All Blog Posts</h1>
+    <div className="flex flex-col gap-6">
+      <h1 className="text-2xl font-bold mb-2">My Blog</h1>
       {blogPosts.map((post) => (
         <BlogCard
           key={post.slug}

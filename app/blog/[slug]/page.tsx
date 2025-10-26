@@ -17,7 +17,9 @@ export default function Page() {
   useEffect(() => {
     const fetchPost = async () => {
       setLoading(true);
-      const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "";
+      const baseUrl = process.env.VERCEL_URL
+        ? `https://${process.env.VERCEL_URL}`
+        : "http://localhost:3000";
       const res = await fetch(`${baseUrl}/api/posts?slug=${slug}`);
       const data: BlogPostData = await res.json();
       setBlogPost(data);

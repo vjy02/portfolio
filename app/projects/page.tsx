@@ -1,3 +1,3 @@
 export default function Page() {
-  return <div className="">WIP</div>;
+  return <h1 className="text-2xl font-bold mb-2">WIP - Projects</h1>;
 }
