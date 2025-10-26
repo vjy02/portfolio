@@ -17,10 +17,9 @@ export default function Page() {
   useEffect(() => {
     const fetchPost = async () => {
       setLoading(true);
-      const baseUrl = process.env.VERCEL_URL
-        ? `https://${process.env.VERCEL_URL}`
-        : "http://localhost:3000";
-      const res = await fetch(`${baseUrl}/api/posts?slug=${slug}`);
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_API_BASE}/api/posts?slug=${slug}`
+      );
       const data: BlogPostData = await res.json();
       setBlogPost(data);
       setLoading(false);
@@ -40,7 +39,7 @@ export default function Page() {
 
   return (
     <article
-      className="prose dark:prose-invert"
+      className="prose prose-sm dark:prose-invert"
       dangerouslySetInnerHTML={{ __html: blogPost.htmlContent }}
     />
   );
