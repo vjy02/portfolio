@@ -39,17 +39,9 @@ export default function Page() {
     return <p className="text-center mt-10 min-h-screen">Post not found</p>;
 
   return (
-    <div className="pt-4">
-      <article
-        className="prose prose-sm dark:prose-invert"
-        dangerouslySetInnerHTML={{ __html: blogPost.htmlContent }}
-      />
-      <Link
-        href="/"
-        className="inline-flex items-center mt-10 text-blue-600 hover:underline"
-      >
-        <IoIosArrowForward className="mr-1" /> Back to homepage
-      </Link>
-    </div>
+    <article
+      className="prose prose-sm pt-4 dark:prose-invert"
+      dangerouslySetInnerHTML={{ __html: blogPost.htmlContent }}
+    />
   );
 }
