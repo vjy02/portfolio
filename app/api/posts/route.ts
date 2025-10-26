@@ -1,5 +1,3 @@
-export const dynamic = "force-dynamic";
-
 import { NextResponse } from 'next/server';
 import { Client } from '@notionhq/client';
 import { NotionToMarkdown } from 'notion-to-md';
@@ -15,6 +13,14 @@ import {
 if (!process.env.NOTION_TOKEN || !process.env.DATABASE_ID) {
   throw new Error('NOTION_TOKEN and DATABASE_ID must be set in environment variables');
 }
+
+const withCors = (res: NextResponse) => {
+  res.headers.set('Access-Control-Allow-Origin', 'https://www.victoryoshida.dev');
+  res.headers.set('Access-Control-Allow-Methods', 'GET, OPTIONS');
+  res.headers.set('Access-Control-Allow-Headers', 'Content-Type');
+  return res;
+};
+
 
 const notion = new Client({ auth: process.env.NOTION_TOKEN });
 const n2m = new NotionToMarkdown({ notionClient: notion });
@@ -84,10 +90,10 @@ export async function GET(req: Request) {
 
     const dataSourceId = dbMeta.data_sources?.[0]?.id;
     if (!dataSourceId) {
-      return NextResponse.json(
+      return withCors(NextResponse.json(
         { error: 'No data_source_id found for this database' },
         { status: 500 }
-      );
+      ));
     }
 
     // Single post fetch
@@ -113,7 +119,7 @@ export async function GET(req: Request) {
       const htmlContent = await remark().use(html).process(markdown.parent || '');
       const post = transformPage(page);
 
-      return NextResponse.json({ post, htmlContent: htmlContent.toString() });
+      return withCors(NextResponse.json(({ post, htmlContent: htmlContent.toString() })));
     }
 
     // Fetch all posts
@@ -136,8 +142,7 @@ export async function GET(req: Request) {
       )
       .map(transformPage)
       .filter((p): p is Post => p !== null);
-
-    return NextResponse.json(posts);
+    return withCors(NextResponse.json(posts));
   } catch (error: unknown) {
     console.error('Error fetching posts:', error);
     const message = error instanceof Error ? error.message : 'Internal Server Error';
