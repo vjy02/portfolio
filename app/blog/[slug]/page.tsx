@@ -2,8 +2,6 @@
 
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
-import Link from "next/link";
-import { IoIosArrowForward } from "react-icons/io";
 
 type BlogPostData = {
   title: string;
