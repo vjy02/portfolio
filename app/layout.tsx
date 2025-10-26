@@ -13,6 +13,22 @@ const ibmPlexMono = IBM_Plex_Mono({
 export const metadata: Metadata = {
   title: "Victor Yoshida",
   description: "My personal portfolio",
+  icons: {
+    icon: "/logo.svg",
+    apple: "/logo.svg",
+    other: [
+      {
+        rel: "icon",
+        url: "/logo.svg",
+        sizes: "32x32",
+      },
+      {
+        rel: "icon",
+        url: "/logo.svg",
+        sizes: "16x16",
+      },
+    ],
+  },
 };
 
 export default function RootLayout({
