@@ -20,7 +20,7 @@ export default async function Page() {
 
   return (
     <div className="flex flex-col gap-6">
-      <h1 className="text-2xl font-bold mb-2">My Blog</h1>
+      <h1 className="text-2xl font-bold mb-2">my random thoughts</h1>
       {blogPosts.map((post) => (
         <BlogCard
           key={post.slug}

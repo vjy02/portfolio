@@ -11,6 +11,8 @@ export const Footer = () => {
             className="flex items-center gap-1 hover:text-gray-900 transition-colors"
             key={socialInfo.name}
             href={socialInfo.url}
+            target="_blank"
+            rel="noopener noreferrer"
           >
             {socialInfo.icon}
             {socialInfo.name}

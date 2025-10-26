@@ -4,12 +4,12 @@ import { FaGithub } from "react-icons/fa";
 export const SOCIAL_URL = [
   {
     name: "LinkedIn",
-    url: "www.linkedin.com/in/victoryoshida02",
+    url: "https://www.linkedin.com/in/victoryoshida02",
     icon: <FaLinkedin />,
   },
   {
     name: "Github",
-    url: "",
+    url: "https://github.com/vjy02/",
     icon: <FaGithub />,
   },
 ];
