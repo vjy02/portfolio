@@ -1,8 +1,8 @@
 import { SOCIAL_URL } from "@/lib/data";
-import { getLastCommitDate } from "@/hooks/getLastCommitDate";
+import { getDeployDate } from "@/hooks/getDeployDate";
 
 export const Footer = () => {
-  const lastUpdated = getLastCommitDate();
+  const lastUpdated = getDeployDate();
   return (
     <footer className="text-gray-600 flex flex-col justify-between min-h-16 gap-10 mt-20 mb-4">
       <div className="flex gap-6 text-sm">
