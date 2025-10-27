@@ -13,7 +13,7 @@ export default function Page() {
           />
         ))}
       </div>
-      <a className="text-xs mx-auto mt-8">and more to come...</a>
+      <a className="text-sm mx-auto mt-8">and more to come...</a>
     </section>
   );
 }

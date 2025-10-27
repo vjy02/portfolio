@@ -6,6 +6,10 @@ root {
   --foreground: #171717;
 }
 
+.prose-sm h1 {
+  font-size: 1.5rem; /* mimic text-2xl */
+}
+
 html {
   scrollbar-gutter: stable;
 }

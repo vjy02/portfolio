@@ -41,13 +41,13 @@ export async function generateMetadata({
 }
 
 export default async function Page({ params }: { params: { slug: string } }) {
-  const post = await getPost(params.slug);
+  const post = await getPost(await params.slug);
 
   if (!post) notFound();
 
   return (
     <article
-      className="prose prose-sm dark:prose-invert mx-auto mt-10"
+      className="prose prose-sm dark:prose-invert mx-auto mt-8"
       dangerouslySetInnerHTML={{ __html: post.htmlContent }}
     />
   );
