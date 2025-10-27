@@ -1,7 +1,4 @@
-"use client";
-
-import { useEffect, useState } from "react";
-import { useParams } from "next/navigation";
+import { notFound } from "next/navigation";
 
 type BlogPostData = {
   title: string;
@@ -9,38 +6,49 @@ type BlogPostData = {
   htmlContent: string;
 };
 
-export default function Page() {
-  const { slug } = useParams();
-  const [blogPost, setBlogPost] = useState<BlogPostData | null>(null);
-  const [loading, setLoading] = useState(true);
+async function getPost(slug: string): Promise<BlogPostData | null> {
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_API_BASE}/api/posts?slug=${slug}`,
+    {
+      next: { revalidate: 60 * 60 },
+    }
+  );
 
-  useEffect(() => {
-    const fetchPost = async () => {
-      setLoading(true);
-      const res = await fetch(
-        `${process.env.NEXT_PUBLIC_API_BASE}/api/posts?slug=${slug}`
-      );
-      const data: BlogPostData = await res.json();
-      setBlogPost(data);
-      setLoading(false);
-    };
+  if (!res.ok) return null;
+  return res.json();
+}
 
-    if (slug) fetchPost();
-  }, [slug]);
+export async function generateStaticParams() {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE}/api/posts`, {
+    next: { revalidate: 60 * 60 },
+  });
 
-  if (loading)
-    return (
-      <p className="text-center mt-10 min-h-96 flex items-center justify-center">
-        Loading blog post...
-      </p>
-    );
-  if (!blogPost)
-    return <p className="text-center mt-10 min-h-screen">Post not found</p>;
+  const posts = await res.json();
+  return posts.map((post: { slug: string }) => ({ slug: post.slug }));
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: { slug: string };
+}) {
+  const post = await getPost(await params.slug);
+  if (!post) return {};
+  return {
+    title: post.title,
+    description: post.description,
+  };
+}
+
+export default async function Page({ params }: { params: { slug: string } }) {
+  const post = await getPost(params.slug);
+
+  if (!post) notFound();
 
   return (
     <article
-      className="prose prose-sm dark:prose-invert"
-      dangerouslySetInnerHTML={{ __html: blogPost.htmlContent }}
+      className="prose prose-sm dark:prose-invert mx-auto mt-10"
+      dangerouslySetInnerHTML={{ __html: post.htmlContent }}
     />
   );
 }
