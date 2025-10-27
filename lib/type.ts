@@ -4,4 +4,5 @@ export type JobExperienceCardProps = {
     description: string;
     role?: string;
     icon?: React.ReactNode;
+    link?: string;
 }

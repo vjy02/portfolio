@@ -1,7 +1,8 @@
 import { FaLinkedin } from "react-icons/fa";
 import { FaGithub } from "react-icons/fa";
+import { FaFilePdf } from "react-icons/fa6";
 
-export const SOCIAL_URL = [
+export const FOOTER_ITEMS = [
   {
     name: "LinkedIn",
     url: "https://www.linkedin.com/in/victoryoshida02",
@@ -12,6 +13,35 @@ export const SOCIAL_URL = [
     url: "https://github.com/vjy02/",
     icon: <FaGithub />,
   },
+  {
+    name: "Resume",
+    url: "https://drive.google.com/file/d/1iodvGx4BBUiv2N_dYpuDZCga66FYzn5g/view?usp=sharing",
+    icon: <FaFilePdf />,
+  },
 ];
 
-export const PROJECT_URL = [];
+export const JOB_EXPERIENCES = [
+  {
+    company: "Canva",
+    link: "https://www.canva.com",
+    role: "Associate Software Engineer",
+    date: "Feb. 2025 - Present",
+    description:
+      "Helping drive product growth to our B2B focused offerings through feature development and experimentation.",
+  },
+  {
+    company: "Elentar",
+    link: "https://www.elentar.com",
+    date: "May 2024 - Feb. 2025",
+    description:
+      "Founding frontend engineer, developed a complex web app dashboard used by national energy distributors to analyse, monitor & generate reports about their renewable energy devices.",
+  },
+  {
+    company: "Commonwealth Bank",
+    link: "https://www.commbank.com.au",
+    role: "Software Engineer Intern",
+    date: "Nov. 2023 - Feb. 2024",
+    description:
+      "Created an automated test tool web app from scratch, replacing an old deprecated Java version used by 15+ test engineers.",
+  },
+];
