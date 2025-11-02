@@ -1,5 +1,5 @@
-import { FOOTER_ITEMS } from "@/lib/data";
-import { getDeployDate } from "@/hooks/getDeployDate";
+import { FOOTER_ITEMS } from "@/data/constants";
+import { getDeployDate } from "@/lib/getDeployDate";
 
 export const Footer = () => {
   const lastUpdated = getDeployDate();

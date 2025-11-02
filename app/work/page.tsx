@@ -1,5 +1,5 @@
 import { JobExperienceCard } from "@/components/JobExperienceCard";
-import { JOB_EXPERIENCES } from "@/lib/data";
+import { JOB_EXPERIENCES } from "@/data/constants";
 
 export default function Page() {
   return (

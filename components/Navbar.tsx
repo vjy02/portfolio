@@ -11,7 +11,13 @@ export const Navbar = () => {
         className="relative group inline-flex items-center justify-center hover:cursor-pointer"
       >
         <div className="relative w-[35px] h-[35px] transition-all duration-200 group-hover:opacity-0">
-          <Image src={logoStatic} alt="Logo" fill className="object-contain" />
+          <Image
+            src={logoStatic}
+            alt="Logo"
+            fill
+            className="object-contain"
+            priority
+          />
         </div>
         <div className="absolute w-[47px] h-[47px] transition-all duration-200 opacity-0 group-hover:opacity-100">
           <Image

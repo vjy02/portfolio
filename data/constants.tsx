@@ -25,6 +25,7 @@ export const JOB_EXPERIENCES = [
     company: "Canva",
     link: "https://www.canva.com",
     role: "Associate Software Engineer",
+    logo: "/canvalogo.png",
     date: "Feb. 2025 - Present",
     description:
       "Helping drive product growth to our B2B focused offerings through feature development and experimentation.",
@@ -33,6 +34,7 @@ export const JOB_EXPERIENCES = [
     company: "Elentar",
     link: "https://www.elentar.com",
     date: "May 2024 - Feb. 2025",
+    logo: "/elentarlogo.png",
     description:
       "Founding frontend engineer, developed a complex web app dashboard used by national energy distributors to analyse, monitor & generate reports about their renewable energy devices.",
   },
@@ -41,6 +43,7 @@ export const JOB_EXPERIENCES = [
     link: "https://www.commbank.com.au",
     role: "Software Engineer Intern",
     date: "Nov. 2023 - Feb. 2024",
+    logo: "/cbalogo.png",
     description:
       "Created an automated test tool web app from scratch, replacing an old deprecated Java version used by 15+ test engineers.",
   },
@@ -57,7 +60,7 @@ export const PROJECTS = [
   },
   {
     title: "Reddit Search",
-    desc: "budget gemini",
+    desc: "summarise reddit",
     color: "bg-[#FF4500] text-white",
     github: "https://github.com/vjy02/reddit-search",
     link: "https://github.com/vjy02/reddit-search",
