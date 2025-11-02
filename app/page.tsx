@@ -32,7 +32,7 @@ export default async function Page() {
       </div>
 
       <div className="flex flex-col gap-3">
-        <h2 className="font-semibold text-lg">recent yap</h2>
+        <h2 className="font-semibold text-lg">recent yaps</h2>
         {blogPost ? (
           <BlogCard
             title={blogPost.title}
@@ -58,13 +58,14 @@ const AnimatedProjectCards = () => (
       <div
         key={title}
         className={`
-          relative group rounded p-5 transition-all duration-500
-          ${color}
-          h-64 md:h-64
-          flex-[1] md:flex-[1]
-          hover:md:flex-[2]
-          min-w-0
-        `}
+        relative group rounded p-5 transition-[flex-grow] duration-500
+        ${color}
+        h-64
+        flex-1
+        hover:flex-[2]
+        min-w-0
+        will-change: flex-grow;
+      `}
       >
         <h3 className="font-semibold truncate">{title}</h3>
         <p className="text-xs mt-2 line-clamp-1">{desc}</p>
@@ -88,7 +89,6 @@ const AnimatedProjectCards = () => (
             <Image
               src={image}
               alt={title}
-              fill={false}
               width={300}
               height={160}
               className="object-cover mt-4 md:mt-0 opacity-80 md:opacity-60 group-hover:opacity-90 rounded md:rounded-t-none w-full h-full transition-all duration-400"
