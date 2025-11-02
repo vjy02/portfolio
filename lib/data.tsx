@@ -61,7 +61,7 @@ export const PROJECTS = [
     color: "bg-[#FF4500] text-white",
     github: "https://github.com/vjy02/reddit-search",
     link: "https://github.com/vjy02/reddit-search",
-    image: "/redditProject.PNG",
+    image: "/redditproject.PNG",
   },
   {
     title: "CulinaryAI",
