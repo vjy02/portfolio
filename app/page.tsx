@@ -53,18 +53,19 @@ export default async function Page() {
 }
 
 const AnimatedProjectCards = () => (
-  <div className="flex flex-col gap-1 md:flex-row">
-    {PROJECTS.map(({ title, desc, image, github, link, color }) => (
+  <div className="flex flex-col gap-3 md:gap-1 md:flex-row justify-between">
+    {PROJECTS.map(({ title, desc, image, github, link, color }, index) => (
       <div
         key={title}
         className={`
-        relative group rounded p-5 transition-[flex-grow] duration-500
+        relative group rounded p-5 duration-300
         ${color}
         h-64
-        flex-1
-        hover:flex-[2]
-        min-w-0
-        will-change: flex-grow;
+        flex-grow-0 flex-shrink-0
+        md:w-[calc(100%/3)]
+        md:hover:w-[calc(100%/2)]
+        transition-[width] duration-300
+         ${index === PROJECTS.length - 1 ? "ml-auto" : ""}
       `}
       >
         <h3 className="font-semibold truncate">{title}</h3>
@@ -74,7 +75,7 @@ const AnimatedProjectCards = () => (
             href={github}
             target="_blank"
             rel="noopener noreferrer"
-            className="absolute top-6 right-5 md:opacity-0 group-hover:opacity-100 transition-opacity duration-400"
+            className="absolute top-6 right-5 md:opacity-0 group-hover:opacity-100 transition-opacity duration-200"
           >
             <FaGithub className="h-4 w-4" />
           </a>
@@ -89,9 +90,9 @@ const AnimatedProjectCards = () => (
             <Image
               src={image}
               alt={title}
-              width={300}
-              height={160}
-              className="object-cover mt-4 md:mt-0 opacity-80 md:opacity-60 group-hover:opacity-90 rounded md:rounded-t-none w-full h-full transition-all duration-400"
+              width={500}
+              height={500}
+              className="object-cover mt-4 md:mt-0 opacity-80 md:opacity-60 group-hover:opacity-90 rounded md:rounded-t-none w-full h-3/4 md:h-full transition-all duration-400"
             />
           </a>
         )}
