@@ -45,3 +45,30 @@ export const JOB_EXPERIENCES = [
       "Created an automated test tool web app from scratch, replacing an old deprecated Java version used by 15+ test engineers.",
   },
 ];
+
+export const PROJECTS = [
+  {
+    title: "HackMelbourne",
+    desc: "website revamp",
+    color: "bg-neutral-800 text-white",
+    github: "https://github.com/HackMelbourne/HackMelbourne.github.io",
+    link: "https://hack.melbourne/",
+    image: "/hackmelbourne.PNG",
+  },
+  {
+    title: "Reddit Search",
+    desc: "budget gemini",
+    color: "bg-[#FF4500] text-white",
+    github: "https://github.com/vjy02/reddit-search",
+    link: "https://github.com/vjy02/reddit-search",
+    image: "/redditProject.PNG",
+  },
+  {
+    title: "CulinaryAI",
+    desc: "first project",
+    color: "bg-emerald-600 text-white",
+    github: "https://github.com/vjy02/culinary-ai-v2.0",
+    link: "https://github.com/vjy02/culinary-ai-v2.0",
+    image: "/culinaryai.PNG",
+  },
+];

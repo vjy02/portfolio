@@ -4,7 +4,7 @@ import { JOB_EXPERIENCES } from "@/lib/data";
 export default function Page() {
   return (
     <section className="flex flex-col gap-6">
-      <h1 className="text-2xl font-bold mb-2">corporate life so far</h1>
+      <h1 className="text-2xl font-bold mb-2">corporate life</h1>
       <div className="flex flex-col gap-10">
         {JOB_EXPERIENCES.map((jobData) => (
           <JobExperienceCard

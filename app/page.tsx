@@ -1,4 +1,7 @@
 import { BlogCard } from "@/components/BlogCard";
+import Image from "next/image";
+import { FaGithub } from "react-icons/fa";
+import { PROJECTS } from "@/lib/data";
 
 type BlogPost = {
   title: string;
@@ -11,7 +14,7 @@ export const revalidate = 3600;
 
 export default async function Page() {
   const blogRes = await fetch(`${process.env.NEXT_PUBLIC_API_BASE}/api/posts`, {
-    next: { revalidate: 60 },
+    next: { revalidate: revalidate },
   });
   const blogPosts: BlogPost[] = await blogRes.json();
   const blogPost = blogPosts?.[0];
@@ -29,7 +32,7 @@ export default async function Page() {
       </div>
 
       <div className="flex flex-col gap-3">
-        <h2 className="font-semibold text-lg">recent blog</h2>
+        <h2 className="font-semibold text-lg">recent yap</h2>
         {blogPost ? (
           <BlogCard
             title={blogPost.title}
@@ -42,7 +45,7 @@ export default async function Page() {
       </div>
 
       <div className="flex flex-col gap-3">
-        <h2 className="font-semibold text-lg">some projects</h2>
+        <h2 className="font-semibold text-lg">side quests</h2>
         <AnimatedProjectCards />
       </div>
     </section>
@@ -50,15 +53,49 @@ export default async function Page() {
 }
 
 const AnimatedProjectCards = () => (
-  <div className="flex gap-1 flex-col md:flex-row">
-    <div className="md:flex-1 min-w-0 h-64 bg-red-400 rounded p-6 transition-all duration-300 hover:flex-[2]">
-      <h3 className="font-semibold truncate">WIP</h3>
-    </div>
-    <div className="md:flex-1 min-w-0 h-64 bg-green-400 rounded p-6 transition-all duration-300 hover:flex-[2]">
-      <h3 className="font-semibold truncate">WIP</h3>
-    </div>
-    <div className="md:flex-1 min-w-0 h-64 bg-blue-400 rounded p-6 transition-all duration-300 hover:flex-[2]">
-      <h3 className="font-semibold truncate">WIP</h3>
-    </div>
+  <div className="flex flex-col gap-1 md:flex-row">
+    {PROJECTS.map(({ title, desc, image, github, link, color }) => (
+      <div
+        key={title}
+        className={`
+          relative group rounded p-5 transition-all duration-500
+          ${color}
+          h-64 md:h-64
+          flex-[1] md:flex-[1]
+          hover:md:flex-[2]
+          min-w-0
+        `}
+      >
+        <h3 className="font-semibold truncate">{title}</h3>
+        <p className="text-xs mt-2 line-clamp-1">{desc}</p>
+        {github && (
+          <a
+            href={github}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="absolute top-6 right-5 md:opacity-0 group-hover:opacity-100 transition-opacity duration-400"
+          >
+            <FaGithub className="h-4 w-4" />
+          </a>
+        )}
+        {link && image && (
+          <a
+            href={link}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-full h-40 md:absolute md:bottom-0 md:left-0 md:h-42"
+          >
+            <Image
+              src={image}
+              alt={title}
+              fill={false}
+              width={300}
+              height={160}
+              className="object-cover mt-4 md:mt-0 opacity-80 md:opacity-60 group-hover:opacity-90 rounded md:rounded-t-none w-full h-full transition-all duration-400"
+            />
+          </a>
+        )}
+      </div>
+    ))}
   </div>
 );
