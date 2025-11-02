@@ -28,6 +28,7 @@ export const JobExperienceCard = ({
           width={500}
           alt={company + " logo"}
           className="w-9 h-9"
+          priority
         />
         <div className="w-full">
           <div className="flex justify-between">
