@@ -14,7 +14,7 @@ export const Navbar = () => {
           <Image
             src={logoStatic}
             alt="Logo"
-            className="object-contain"
+            className="object-contain translate-3d"
             unoptimized
             priority
           />

@@ -20,6 +20,13 @@ body {
   font-family: var(--font-ibm-plex-mono), monospace, sans-serif;
 }
 
+@layer utilities {
+  .translate-3d {
+    -webkit-transform: translate3d(0, 0, 0); /* for Safari blurry svg */
+    transform: translate3d(0, 0, 0); 
+  }
+}
+
 .font-sans-override {
   font-family: ui-sans-serif, system-ui, sans-serif !important;
 }
