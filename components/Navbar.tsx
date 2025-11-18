@@ -10,7 +10,7 @@ export const Navbar = () => {
         href="/"
         className="relative group inline-flex items-center justify-center hover:cursor-pointer"
       >
-        <div className="relative w-[35px] h-[35px] transition-all duration-200 group-hover:opacity-0">
+        <div className="relative w-9 h-9 transition-all duration-200 group-hover:opacity-0">
           <Image
             src={logoStatic}
             alt="Logo"
@@ -18,7 +18,7 @@ export const Navbar = () => {
             priority
           />
         </div>
-        <div className="absolute w-[47px] h-[47px] transition-all duration-200 opacity-0 group-hover:opacity-100">
+        <div className="absolute w-12 h-12 transition-all duration-200 opacity-0 group-hover:opacity-100">
           <Image
             src={logoHover}
             alt="Logo hover"
