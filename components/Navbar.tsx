@@ -15,6 +15,7 @@ export const Navbar = () => {
             src={logoStatic}
             alt="Logo"
             className="object-contain"
+            unoptimized
             priority
           />
         </div>
@@ -23,6 +24,7 @@ export const Navbar = () => {
             src={logoHover}
             alt="Logo hover"
             className="object-contain"
+            unoptimized
           />
         </div>
       </Link>
