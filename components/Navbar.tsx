@@ -14,7 +14,6 @@ export const Navbar = () => {
           <Image
             src={logoStatic}
             alt="Logo"
-            fill
             className="object-contain"
             priority
           />
@@ -23,13 +22,12 @@ export const Navbar = () => {
           <Image
             src={logoHover}
             alt="Logo hover"
-            fill
             className="object-contain"
           />
         </div>
       </Link>
       <div className="flex gap-8">
-        <Link href="/work" className="hover:font-bold transition-all">
+        <Link href="/work" className="hover:font-bold transition-all" prefetch>
           work
         </Link>
         <Link href="/blog" className="hover:font-bold transition-all">
