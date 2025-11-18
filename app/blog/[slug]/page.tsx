@@ -47,7 +47,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
 
   return (
     <article
-      className="prose prose-sm dark:prose-invert mx-auto mt-8"
+      className="prose prose-sm mx-auto mt-8"
       dangerouslySetInnerHTML={{ __html: post.htmlContent }}
     />
   );
