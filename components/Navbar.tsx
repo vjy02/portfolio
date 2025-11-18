@@ -18,7 +18,7 @@ export const Navbar = () => {
             priority
           />
         </div>
-        <div className="absolute w-[47px] h-[47px] transition-all duration-200 opacity-0 group-hover:opacity-100">
+        <div className="absolute w-[47px] h-[47px] invisible md:visible transition-all duration-200 opacity-0 group-hover:opacity-100">
           <Image
             src={logoHover}
             alt="Logo hover"
