@@ -45,7 +45,7 @@ export const JOB_EXPERIENCES = [
     date: "Nov. 2023 - Feb. 2024",
     logo: "/cbalogo.png",
     description:
-      "Created an automated test tool web app from scratch, replacing an old deprecated Java version used by 15+ test engineers.",
+      "Created an automated internal test tool web app from scratch, replacing an old deprecated Java version used by test engineers.",
   },
 ];
 
