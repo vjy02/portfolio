@@ -11,7 +11,10 @@ const ibmPlexMono = IBM_Plex_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Victor Yoshida",
+  title: {
+    default: "Victor Yoshida",
+    template: "%s | Victor Yoshida",
+  },
   description: "My personal portfolio",
   icons: {
     icon: "/logo.svg",
