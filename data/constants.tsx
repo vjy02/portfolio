@@ -67,11 +67,11 @@ export const PROJECTS = [
     image: "/redditproject.PNG",
   },
   {
-    title: "CulinaryAI",
-    desc: "first project",
-    color: "bg-emerald-600 text-white",
-    github: "https://github.com/vjy02/culinary-ai-v2.0",
-    link: "https://github.com/vjy02/culinary-ai-v2.0",
-    image: "/culinaryai.PNG",
+    title: "Clackmarket",
+    desc: "keeb marketplace",
+    color: "bg-teal-600 text-white",
+    github: "https://github.com/vjy02/clackmarket",
+    link: "https://www.clackmarket.com/",
+    image: "/clackmarket.png",
   },
 ];
