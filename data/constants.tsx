@@ -24,7 +24,7 @@ export const JOB_EXPERIENCES = [
   {
     company: "Canva",
     link: "https://www.canva.com",
-    role: "Associate Software Engineer",
+    role: "Software Engineer",
     logo: "/canvalogo.png",
     date: "Feb. 2025 - Present",
     description:
