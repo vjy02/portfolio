@@ -23,8 +23,9 @@ export const SpotifyActivityCard = () => {
   useEffect(() => {
     const cached = sessionStorage.getItem("spotifyTrack");
     if (cached) {
-      setTrack(JSON.parse(cached));
-      setIframeLoaded(true);
+      const parsed = JSON.parse(cached);
+      setTrack(parsed);
+      setIframeLoaded(false);
       return;
     }
     async function fetchSpotify() {
@@ -35,6 +36,7 @@ export const SpotifyActivityCard = () => {
         const current = tracks?.[0] || FALLBACK_TRACK;
         setTrack(current);
         sessionStorage.setItem("spotifyTrack", JSON.stringify(current));
+        setIframeLoaded(false);
       } catch {
         setTrack(FALLBACK_TRACK);
       }
@@ -44,7 +46,7 @@ export const SpotifyActivityCard = () => {
 
   return (
     <div className="relative w-full h-[80px]">
-      {(!track || !iframeLoaded) && (
+      {!iframeLoaded && (
         <div className="absolute inset-0 rounded-md bg-neutral-800 animate-pulse opacity-95 flex items-center gap-4 px-4">
           <div className="h-12 w-12 bg-neutral-700 rounded-sm" />
           <div className="flex-1 space-y-2">
