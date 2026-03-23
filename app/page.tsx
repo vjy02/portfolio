@@ -22,7 +22,7 @@ export default async function Page() {
   return (
     <AnimatedPage>
       <section className="text-sm flex flex-col gap-8">
-        <div className="flex flex-col gap-3">
+        <div className="flex flex-col gap-2">
           <h2 className="font-semibold text-lg">hi, i&apos;m Victor Yoshida</h2>
           <p>
             A <strong>frontend</strong> focused software engineer currently
@@ -33,12 +33,12 @@ export default async function Page() {
           </p>
         </div>
 
-        <div className="flex flex-col gap-3">
+        <div className="flex flex-col gap-2">
           <h2 className="font-semibold text-lg">listening to rn</h2>
           <SpotifyActivityCard />
         </div>
 
-        <div className="flex flex-col gap-3">
+        <div className="flex flex-col gap-2">
           <h2 className="font-semibold text-lg">a recent yap</h2>
           {blogPost ? (
             <BlogCard
@@ -51,7 +51,7 @@ export default async function Page() {
           )}
         </div>
 
-        <div className="flex flex-col gap-3">
+        <div className="flex flex-col gap-2">
           <h2 className="font-semibold text-lg">side quests</h2>
           <AnimatedProjectCards />
         </div>
