@@ -49,8 +49,8 @@ export const SpotifyActivityCard = () => {
 
   useEffect(() => {
     if (iframeLoaded) {
-      const timeout = setTimeout(() => setShowIframe(true), 1000);
-      return () => clearTimeout(timeout);
+      const id = requestAnimationFrame(() => setShowIframe(true));
+      return () => cancelAnimationFrame(id);
     }
   }, [iframeLoaded]);
 
@@ -69,14 +69,13 @@ export const SpotifyActivityCard = () => {
         <iframe
           src={track.songUrl}
           className={`w-full h-[80px] transition-opacity duration-500 ${
-            showIframe ? "opacity-100" : "opacity-0"
+            iframeLoaded ? "opacity-100" : "opacity-0"
           }`}
           style={{
             border: "none",
             display: "block",
             background: "transparent",
           }}
-          allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
           onLoad={() => setIframeLoaded(true)}
         />
       )}
