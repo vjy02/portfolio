@@ -19,6 +19,7 @@ const FALLBACK_TRACK: Track = {
 export const SpotifyActivityCard = () => {
   const [track, setTrack] = useState<Track | null>(null);
   const [iframeLoaded, setIframeLoaded] = useState(false);
+  const [showIframe, setShowIframe] = useState(false); // delay rendering iframe
 
   useEffect(() => {
     const cached = sessionStorage.getItem("spotifyTrack");
@@ -26,6 +27,7 @@ export const SpotifyActivityCard = () => {
       const parsed = JSON.parse(cached);
       setTrack(parsed);
       setIframeLoaded(false);
+      setShowIframe(false);
       return;
     }
     async function fetchSpotify() {
@@ -37,6 +39,7 @@ export const SpotifyActivityCard = () => {
         setTrack(current);
         sessionStorage.setItem("spotifyTrack", JSON.stringify(current));
         setIframeLoaded(false);
+        setShowIframe(false);
       } catch {
         setTrack(FALLBACK_TRACK);
       }
@@ -44,10 +47,18 @@ export const SpotifyActivityCard = () => {
     fetchSpotify();
   }, []);
 
+  useEffect(() => {
+    if (iframeLoaded) {
+      const timeout = setTimeout(() => setShowIframe(true), 1000);
+      return () => clearTimeout(timeout);
+    }
+  }, [iframeLoaded]);
+
   return (
     <div className="relative w-full h-[80px]">
-      {!iframeLoaded && (
-        <div className="absolute inset-0 rounded-md bg-neutral-800 animate-pulse opacity-95 flex items-center gap-4 px-4">
+      {/* Placeholder */}
+      {!showIframe && (
+        <div className="absolute inset-0 rounded-md bg-neutral-800 flex items-center gap-4 px-4 z-10">
           <div className="h-12 w-12 bg-neutral-700 rounded-sm" />
           <div className="flex-1 space-y-2">
             <div className="h-3 bg-neutral-700 rounded w-3/4" />
@@ -55,13 +66,19 @@ export const SpotifyActivityCard = () => {
           </div>
         </div>
       )}
+
+      {/* Iframe */}
       {track && (
         <iframe
           src={track.songUrl}
-          className={`w-full h-[80px] transition-opacity duration-300 ${
-            iframeLoaded ? "opacity-100" : "opacity-0"
+          className={`w-full h-[80px] transition-opacity duration-500 ${
+            showIframe ? "opacity-100" : "opacity-0"
           }`}
-          style={{ border: "none", display: "block" }}
+          style={{
+            border: "none",
+            display: "block",
+            background: "transparent",
+          }}
           allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
           onLoad={() => setIframeLoaded(true)}
         />
