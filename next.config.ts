@@ -11,15 +11,6 @@ const nextConfig: NextConfig = {
     NEXT_PUBLIC_APP_VERSION: packageJson.version,
     NEXT_PUBLIC_LAST_DEPLOYED_AT: buildTime,
   },
-  images: {
-    remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: 'www.liangh.me',
-        port: '',
-      },
-    ],
-  }
 };
 
 export default nextConfig;
