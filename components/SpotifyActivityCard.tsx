@@ -21,18 +21,24 @@ export const SpotifyActivityCard = () => {
   const [iframeLoaded, setIframeLoaded] = useState(false);
 
   useEffect(() => {
+    const cached = sessionStorage.getItem("spotifyTrack");
+    if (cached) {
+      setTrack(JSON.parse(cached));
+      setIframeLoaded(true);
+      return;
+    }
     async function fetchSpotify() {
       try {
-        const res = await fetch("/api/spotify");
+        const res = await fetch("/api/spotify", { cache: "no-store" });
         if (!res.ok) throw new Error("Spotify fetch failed");
-
         const tracks: Track[] = await res.json();
-        setTrack(tracks?.[0] || FALLBACK_TRACK);
+        const current = tracks?.[0] || FALLBACK_TRACK;
+        setTrack(current);
+        sessionStorage.setItem("spotifyTrack", JSON.stringify(current));
       } catch {
         setTrack(FALLBACK_TRACK);
       }
     }
-
     fetchSpotify();
   }, []);
 
