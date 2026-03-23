@@ -56,7 +56,6 @@ export const SpotifyActivityCard = () => {
 
   return (
     <div className="relative w-full h-[80px]">
-      {/* Placeholder */}
       {!showIframe && (
         <div className="absolute inset-0 rounded-md bg-neutral-800 flex items-center gap-4 px-4 z-10">
           <div className="h-12 w-12 bg-neutral-700 rounded-sm" />
@@ -66,8 +65,6 @@ export const SpotifyActivityCard = () => {
           </div>
         </div>
       )}
-
-      {/* Iframe */}
       {track && (
         <iframe
           src={track.songUrl}
