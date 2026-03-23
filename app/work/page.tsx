@@ -4,7 +4,7 @@ import { AnimatedPage } from "@/components/AnimatedPage";
 
 export default function Page() {
   return (
-    <AnimatedPage>
+    <AnimatedPage direction="left">
       <section className="flex flex-col gap-6">
         <h1 className="text-2xl font-bold mb-2">corporate life</h1>
         <div className="flex flex-col gap-10">

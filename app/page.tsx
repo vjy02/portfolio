@@ -20,7 +20,7 @@ export default async function Page() {
   const blogPost = blogPosts?.[0];
 
   return (
-    <AnimatedPage>
+    <AnimatedPage direction="top">
       <section className="text-sm flex flex-col gap-8">
         <div className="flex flex-col gap-2">
           <h2 className="font-semibold text-lg">hi, i&apos;m Victor Yoshida</h2>

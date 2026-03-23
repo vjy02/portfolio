@@ -52,7 +52,7 @@ export default async function Page({
   const post = await getPost(slug);
   if (!post) notFound();
   return (
-    <AnimatedPage>
+    <AnimatedPage direction="bottom">
       <article
         className="prose prose-sm mx-auto mt-8"
         dangerouslySetInnerHTML={{ __html: post.htmlContent }}
