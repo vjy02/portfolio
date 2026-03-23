@@ -23,9 +23,7 @@ export const SpotifyActivityCard = () => {
   useEffect(() => {
     async function fetchSpotify() {
       try {
-        const res = await fetch(
-          `${process.env.NEXT_PUBLIC_API_BASE}/api/spotify`,
-        );
+        const res = await fetch("/api/spotify");
         if (!res.ok) throw new Error("Spotify fetch failed");
 
         const tracks: Track[] = await res.json();
