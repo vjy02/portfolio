@@ -1,3 +1,4 @@
+import { AnimatedPage } from "@/components/AnimatedPage";
 import { notFound } from "next/navigation";
 
 type BlogPostData = {
@@ -11,7 +12,7 @@ type BlogPostData = {
 async function getPost(slug: string): Promise<BlogPostData | null> {
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_API_BASE}/api/posts?slug=${slug}`,
-    { next: { revalidate: 60 * 60 } }
+    { next: { revalidate: 60 * 60 } },
   );
   if (!res.ok) return null;
   return res.json();
@@ -51,9 +52,11 @@ export default async function Page({
   const post = await getPost(slug);
   if (!post) notFound();
   return (
-    <article
-      className="prose prose-sm mx-auto mt-8"
-      dangerouslySetInnerHTML={{ __html: post.htmlContent }}
-    />
+    <AnimatedPage>
+      <article
+        className="prose prose-sm mx-auto mt-8"
+        dangerouslySetInnerHTML={{ __html: post.htmlContent }}
+      />
+    </AnimatedPage>
   );
 }
