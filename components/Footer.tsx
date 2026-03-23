@@ -4,7 +4,7 @@ import { getDeployDate } from "@/lib/getDeployDate";
 export const Footer = () => {
   const lastUpdated = getDeployDate();
   return (
-    <footer className="text-gray-600 flex flex-col justify-between min-h-16 gap-6 mt-12 mb-4">
+    <footer className="text-gray-600 flex flex-col justify-between min-h-16 gap-10 mt-12">
       <div className="flex gap-8 text-sm">
         {FOOTER_ITEMS.map((footerItem) => (
           <a

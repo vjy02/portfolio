@@ -33,7 +33,7 @@ export default async function Page() {
           </p>
         </div>
 
-        <div className="flex flex-col gap-4">
+        <div className="flex flex-col gap-3">
           <h2 className="font-semibold text-lg">listening to rn</h2>
           <SpotifyActivityCard />
         </div>
@@ -51,7 +51,7 @@ export default async function Page() {
           )}
         </div>
 
-        <div className="flex flex-col gap-4">
+        <div className="flex flex-col gap-3">
           <h2 className="font-semibold text-lg">side quests</h2>
           <AnimatedProjectCards />
         </div>
