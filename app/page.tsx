@@ -1,6 +1,6 @@
 import { BlogCard } from "@/components/BlogCard";
 import { AnimatedProjectCards } from "@/components/AnimatedProjectCards";
-import { SpotifyActivityCard, Track } from "@/components/SpotifyActivityCard";
+import { SpotifyActivityCard } from "@/components/SpotifyActivityCard";
 import { AnimatedPage } from "@/components/AnimatedPage";
 
 type BlogPost = {
@@ -19,12 +19,6 @@ export default async function Page() {
   const blogPosts: BlogPost[] = await blogRes.json();
   const blogPost = blogPosts?.[0];
 
-  const SpotifyRes = await fetch(
-    `${process.env.NEXT_PUBLIC_API_BASE}/api/spotify`,
-  );
-  const tracks = await SpotifyRes.json();
-  const track: Track = tracks?.[0];
-
   return (
     <AnimatedPage>
       <section className="text-sm flex flex-col gap-8">
@@ -39,6 +33,11 @@ export default async function Page() {
           </p>
         </div>
 
+        <div className="flex flex-col gap-4">
+          <h2 className="font-semibold text-lg">listening to rn</h2>
+          <SpotifyActivityCard />
+        </div>
+
         <div className="flex flex-col gap-3">
           <h2 className="font-semibold text-lg">a recent yap</h2>
           {blogPost ? (
@@ -50,11 +49,6 @@ export default async function Page() {
           ) : (
             <p>No recent posts found.</p>
           )}
-        </div>
-
-        <div className="flex flex-col gap-4">
-          <h2 className="font-semibold text-lg">listening to rn</h2>
-          <SpotifyActivityCard track={track} />
         </div>
 
         <div className="flex flex-col gap-4">
