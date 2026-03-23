@@ -10,12 +10,12 @@ export const AnimatedProjectCards = () => (
         className={`
         relative group rounded p-5 duration-300
         ${color}
-        h-64
+        h-54
         flex-grow-0 flex-shrink-0
         md:w-[calc(100%/3)]
         md:hover:w-[calc(100%/2)]
         transition-[width] duration-300
-         ${index === PROJECTS.length - 1 ? "ml-auto" : ""}
+         ${index === PROJECTS.length - 1 ? "md:ml-auto" : ""}
       `}
       >
         <h3 className="font-semibold truncate">{title}</h3>
@@ -35,7 +35,7 @@ export const AnimatedProjectCards = () => (
             href={link}
             target="_blank"
             rel="noopener noreferrer"
-            className="w-full h-40 md:absolute md:bottom-0 md:left-0 md:h-42"
+            className="w-full h-40 md:absolute md:bottom-0 md:left-0 md:h-32"
           >
             <Image
               src={image}

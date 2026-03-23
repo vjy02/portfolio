@@ -1,3 +1,4 @@
+import { AnimatedPage } from "@/components/AnimatedPage";
 import { BlogCard } from "@/components/BlogCard";
 
 type BlogPost = {
@@ -19,16 +20,18 @@ export default async function Page() {
   }
 
   return (
-    <section className="flex flex-col gap-6">
-      <h1 className="text-2xl font-bold mb-2">random thoughts</h1>
-      {blogPosts.map((post) => (
-        <BlogCard
-          key={post.slug}
-          title={post.title}
-          description={post.description}
-          link={`/blog/${post.slug}`}
-        />
-      ))}
-    </section>
+    <AnimatedPage>
+      <section className="flex flex-col gap-6">
+        <h1 className="text-2xl font-bold mb-2">random thoughts</h1>
+        {blogPosts.map((post) => (
+          <BlogCard
+            key={post.slug}
+            title={post.title}
+            description={post.description}
+            link={`/blog/${post.slug}`}
+          />
+        ))}
+      </section>
+    </AnimatedPage>
   );
 }

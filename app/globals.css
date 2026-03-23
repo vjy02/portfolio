@@ -23,7 +23,7 @@ body {
 @layer utilities {
   .translate-3d {
     -webkit-transform: translate3d(0, 0, 0); /* for Safari blurry svg */
-    transform: translate3d(0, 0, 0); 
+    transform: translate3d(0, 0, 0);
   }
 }
 
