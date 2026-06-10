@@ -157,8 +157,16 @@ export async function POST(req: NextRequest) {
     const [scoreA, scoreB] = predictScore(strength, isKnockout);
 
     let winner: string | null = null;
+
     if (isKnockout) {
-        winner = scoreA > scoreB ? team_a : team_b;
+        winner = scoreA >= scoreB ? team_a : team_b;
+        if (scoreA === scoreB) {
+            winner = effectiveRatingA >= effectiveRatingB ? team_a : team_b;
+        }
+    } else {
+        if (scoreA !== scoreB) {
+            winner = scoreA > scoreB ? team_a : team_b;
+        }
     }
 
     const response: PredictionResponse = {
