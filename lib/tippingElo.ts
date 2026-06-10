@@ -26,8 +26,8 @@ export const WORLD_CUP_TEAM_ELOS = {
   Australia: 1777,
   Iran: 1772,
   Algeria: 1760,
-  "South Korea": 1758,
-  Czechia: 1740,
+  "Korea Republic": 1758,
+  "Czech Republic": 1740,
   Panama: 1730,
   "United States": 1726,
   Uzbekistan: 1714,
@@ -45,7 +45,7 @@ export const WORLD_CUP_TEAM_ELOS = {
   Haiti: 1548,
   "South Africa": 1517,
   Ghana: 1510,
-  Curacao: 1434,
+  Curaçao: 1434,
   Qatar: 1421,
 } as const;
 
