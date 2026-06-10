@@ -91,23 +91,32 @@ function seededVariance(seed: string): number {
     return ((hash >>> 0) % 1000) / 500 - 1;
 }
 
+function poissonSample(lambda: number): number {
+    // Knuth algorithm — natural Poisson sampler
+    const L = Math.exp(-lambda);
+    let k = 0;
+    let p = 1;
+    do {
+        k++;
+        p *= Math.random();
+    } while (p > L);
+    return k - 1;
+}
+
 function predictScore(strength: number, isKnockout: boolean): [number, number] {
-    if (isKnockout) {
-        if (strength > 1.2) return [3, 0];
-        if (strength > 0.6) return [2, 0];
-        if (strength > 0.1) return [2, 1];
-        if (strength > -0.1) return [2, 1];
-        if (strength > -0.6) return [1, 2];
-        if (strength > -1.2) return [0, 2];
-        return [0, 3];
-    } else {
-        if (strength > 1.2) return [3, 0];
-        if (strength > 0.8) return [2, 0];
-        if (strength > 0.3) return [2, 1];
-        if (strength > -0.3) return [1, 1];
-        if (strength > -0.8) return [1, 2];
-        return [0, 2];
+    const AVG_GOALS = 1.25;
+    const lambdaA = Math.max(0.2, AVG_GOALS + strength * 0.9);
+    const lambdaB = Math.max(0.2, AVG_GOALS - strength * 0.9);
+
+    let sA = poissonSample(lambdaA);
+    let sB = poissonSample(lambdaB);
+
+    if (sA === sB && isKnockout) {
+        if (strength >= 0) sA++;
+        else sB++;
     }
+
+    return [sA, sB];
 }
 
 export async function POST(req: NextRequest) {
