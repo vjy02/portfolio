@@ -105,10 +105,10 @@ function poissonSample(lambda: number): number {
 
 function predictScore(strength: number): [number, number] {
     const AVG_GOALS = 1.45;
-    const lambdaA = Math.max(0.3, AVG_GOALS + strength * 0.65);
-    const lambdaB = Math.max(0.3, AVG_GOALS - strength * 0.65);
+    const lambdaA = Math.max(0.2, AVG_GOALS + strength * 0.5);
+    const lambdaB = Math.max(0.2, AVG_GOALS - strength * 0.5);
 
-    const sA = Math.min(poissonSample(lambdaA), 5); // was 7
+    const sA = Math.min(poissonSample(lambdaA), 5);
     const sB = Math.min(poissonSample(lambdaB), 5);
 
     return [sA, sB];
@@ -117,7 +117,7 @@ function predictScore(strength: number): [number, number] {
 function predictPenalties(teamA: string, teamB: string, strength: number): string {
     let scoreA = 0;
     let scoreB = 0;
-    const baseChanceA = 0.5 + strength * 0.04; // was 0.06
+    const baseChanceA = 0.5 + strength * 0.04;
 
     for (let i = 0; i < 5; i++) {
         if (Math.random() < baseChanceA) scoreA++;
@@ -161,7 +161,7 @@ export async function POST(req: NextRequest) {
     const effectiveRatingB = ratingB + (isDarkHorseB ? DARK_HORSE_ELO_BONUS : 0);
 
     const diff = effectiveRatingA - effectiveRatingB;
-    const expectedGoalDiff = diff / 600;
+    const expectedGoalDiff = diff / 400;
 
     const formA = computeForm(team_a, previous_results);
     const formB = computeForm(team_b, previous_results);
