@@ -104,13 +104,12 @@ function poissonSample(lambda: number): number {
 }
 
 function predictScore(strength: number): [number, number] {
-    const AVG_GOALS = 1.25;
-    const lambdaA = Math.max(0.2, AVG_GOALS + strength * 0.75);
-    const lambdaB = Math.max(0.2, AVG_GOALS - strength * 0.75);
+    const AVG_GOALS = 1.45;
+    const lambdaA = Math.max(0.3, AVG_GOALS + strength * 0.65);
+    const lambdaB = Math.max(0.3, AVG_GOALS - strength * 0.65);
 
-    const sA = Math.min(poissonSample(lambdaA), 7);
-    const sB = Math.min(poissonSample(lambdaB), 7);
-
+    const sA = Math.min(poissonSample(lambdaA), 5);
+    const sB = Math.min(poissonSample(lambdaB), 5);
     return [sA, sB];
 }
 
