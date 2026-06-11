@@ -61,15 +61,12 @@ export const DARK_HORSE_TEAMS = new Set<TeamName>([
 
 export const DARK_HORSE_ELO_BONUS = 150;
 
-export const DARK_HORSE_VARIANCE_BY_STAGE: Record<
-  "group" | "round_of_32" | "round_of_16" | "quarterfinal" | "semifinal" | "third_place" | "final",
-  number
-> = {
-  group: 0.45,
-  round_of_32: 0.40,
-  round_of_16: 0.35,
-  quarterfinal: 0.28,
-  semifinal: 0.20,
-  third_place: 0.25,
-  final: 0.15,
+export const DARK_HORSE_VARIANCE_BY_STAGE = {
+  group: 0.30,
+  round_of_32: 0.25,
+  round_of_16: 0.22,
+  quarterfinal: 0.18,
+  semifinal: 0.12,
+  third_place: 0.15,
+  final: 0.10,
 };
