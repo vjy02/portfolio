@@ -98,15 +98,14 @@ function predictScore(strength: number): [number, number] {
     const xGA = base + strength * 0.5;
     const xGB = base - strength * 0.5;
 
-    const noiseA = (Math.random() - 0.5) * 0.5;
-    const noiseB = (Math.random() - 0.5) * 0.5;
+    const noiseA = (Math.random() - 0.5) * 2.4;
+    const noiseB = (Math.random() - 0.5) * 2.4;
 
-    const sA = Math.min(4, Math.max(0, Math.round(xGA + noiseA)));
-    const sB = Math.min(4, Math.max(0, Math.round(xGB + noiseB)));
+    const sA = Math.min(5, Math.max(0, Math.round(xGA + noiseA)));
+    const sB = Math.min(5, Math.max(0, Math.round(xGB + noiseB)));
 
     return [sA, sB];
 }
-
 function predictPenalties(teamA: string, teamB: string, strength: number): string {
     let scoreA = 0;
     let scoreB = 0;
