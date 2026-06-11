@@ -105,8 +105,8 @@ function poissonSample(lambda: number): number {
 
 function predictScore(strength: number): [number, number] {
     const AVG_GOALS = 1.25;
-    const lambdaA = Math.max(0.2, AVG_GOALS + strength * 0.65);
-    const lambdaB = Math.max(0.2, AVG_GOALS - strength * 0.65);
+    const lambdaA = Math.max(0.2, AVG_GOALS + strength * 0.75);
+    const lambdaB = Math.max(0.2, AVG_GOALS - strength * 0.75);
 
     const sA = Math.min(poissonSample(lambdaA), 7);
     const sB = Math.min(poissonSample(lambdaB), 7);
@@ -117,7 +117,7 @@ function predictScore(strength: number): [number, number] {
 function predictPenalties(teamA: string, teamB: string, strength: number): string {
     let scoreA = 0;
     let scoreB = 0;
-    const baseChanceA = 0.5 + strength * 0.03;
+    const baseChanceA = 0.5 + strength * 0.06;
 
     for (let i = 0; i < 5; i++) {
         if (Math.random() < baseChanceA) scoreA++;
