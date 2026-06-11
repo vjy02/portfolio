@@ -177,14 +177,10 @@ export async function POST(req: NextRequest) {
         variance = seededVariance(seed) * varianceRange;
     }
 
-    // Strength floor — prevents large favourites from going negative due to variance/form
     const rawStrength = baseStrength + variance;
-    const strength = baseStrength > 0.4
-        ? Math.max(0.15, rawStrength)
-        : baseStrength < -0.4
-            ? Math.min(-0.15, rawStrength)
-            : rawStrength;
-
+    const strength = baseStrength > 0
+        ? Math.max(baseStrength * 0.6, rawStrength)
+        : Math.min(baseStrength * 0.6, rawStrength);
     const [scoreA, scoreB] = predictScore(strength);
 
     let winner: string | null = null;
