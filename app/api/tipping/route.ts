@@ -105,11 +105,11 @@ function poissonSample(lambda: number): number {
 
 function predictScore(strength: number, isKnockout: boolean): [number, number] {
     const AVG_GOALS = 1.25;
-    const lambdaA = Math.max(0.2, AVG_GOALS + strength * 1.2);
-    const lambdaB = Math.max(0.2, AVG_GOALS - strength * 1.2);
+    const lambdaA = Math.max(0.2, AVG_GOALS + strength * 0.9);
+    const lambdaB = Math.max(0.2, AVG_GOALS - strength * 0.9);
 
-    let sA = Math.min(poissonSample(lambdaA), 5);
-    let sB = Math.min(poissonSample(lambdaB), 5);
+    let sA = Math.min(poissonSample(lambdaA), 7);
+    let sB = Math.min(poissonSample(lambdaB), 7);
 
     if (sA === sB && isKnockout) {
         if (strength >= 0) sA++;
@@ -117,6 +117,26 @@ function predictScore(strength: number, isKnockout: boolean): [number, number] {
     }
 
     return [sA, sB];
+}
+
+function predictPenalties(teamA: string, teamB: string, strength: number): string {
+    let scoreA = 0;
+    let scoreB = 0;
+    const baseChanceA = 0.5 + strength * 0.08;
+
+    for (let i = 0; i < 5; i++) {
+        if (Math.random() < baseChanceA) scoreA++;
+        else scoreB++;
+    }
+
+    let i = 0;
+    while (scoreA === scoreB && i < 10) {
+        if (Math.random() < baseChanceA) scoreA++;
+        else scoreB++;
+        i++;
+    }
+
+    return scoreA >= scoreB ? teamA : teamB;
 }
 
 export async function POST(req: NextRequest) {
@@ -168,9 +188,10 @@ export async function POST(req: NextRequest) {
     let winner: string | null = null;
 
     if (isKnockout) {
-        winner = scoreA >= scoreB ? team_a : team_b;
         if (scoreA === scoreB) {
-            winner = effectiveRatingA >= effectiveRatingB ? team_a : team_b;
+            winner = predictPenalties(team_a, team_b, strength);
+        } else {
+            winner = scoreA > scoreB ? team_a : team_b;
         }
     } else {
         if (scoreA !== scoreB) {
