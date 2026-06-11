@@ -186,7 +186,7 @@ export async function POST(req: NextRequest) {
 
     return NextResponse.json(response, {
         headers: {
-            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Origin": "https://mburton.dev",
             "Access-Control-Allow-Methods": "POST, OPTIONS",
             "Access-Control-Allow-Headers": "Content-Type",
         },
