@@ -92,24 +92,17 @@ function seededVariance(seed: string): number {
     return ((hash >>> 0) % 1000) / 500 - 1;
 }
 
-function poissonSample(lambda: number): number {
-    const L = Math.exp(-lambda);
-    let k = 0;
-    let p = 1;
-    do {
-        k++;
-        p *= Math.random();
-    } while (p > L);
-    return k - 1;
-}
-
 function predictScore(strength: number): [number, number] {
-    const AVG_GOALS = 1.45;
-    const lambdaA = Math.max(0.2, AVG_GOALS + strength * 0.5);
-    const lambdaB = Math.max(0.2, AVG_GOALS - strength * 0.5);
+    const base = 1.3;
 
-    const sA = Math.min(poissonSample(lambdaA), 5);
-    const sB = Math.min(poissonSample(lambdaB), 5);
+    const xGA = base + strength * 0.5;
+    const xGB = base - strength * 0.5;
+
+    const noiseA = (Math.random() - 0.5) * 0.5;
+    const noiseB = (Math.random() - 0.5) * 0.5;
+
+    const sA = Math.min(4, Math.max(0, Math.round(xGA + noiseA)));
+    const sB = Math.min(4, Math.max(0, Math.round(xGB + noiseB)));
 
     return [sA, sB];
 }
