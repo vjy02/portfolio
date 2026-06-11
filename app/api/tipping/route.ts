@@ -105,11 +105,11 @@ function poissonSample(lambda: number): number {
 
 function predictScore(strength: number, isKnockout: boolean): [number, number] {
     const AVG_GOALS = 1.25;
-    const lambdaA = Math.max(0.2, AVG_GOALS + strength * 0.9);
-    const lambdaB = Math.max(0.2, AVG_GOALS - strength * 0.9);
+    const lambdaA = Math.max(0.2, AVG_GOALS + strength * 1.2);
+    const lambdaB = Math.max(0.2, AVG_GOALS - strength * 1.2);
 
-    let sA = poissonSample(lambdaA);
-    let sB = poissonSample(lambdaB);
+    let sA = Math.min(poissonSample(lambdaA), 5);
+    let sB = Math.min(poissonSample(lambdaB), 5);
 
     if (sA === sB && isKnockout) {
         if (strength >= 0) sA++;
@@ -184,5 +184,11 @@ export async function POST(req: NextRequest) {
         predicted_winner: winner,
     };
 
-    return NextResponse.json(response);
+    return NextResponse.json(response, {
+        headers: {
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Methods": "POST, OPTIONS",
+            "Access-Control-Allow-Headers": "Content-Type",
+        },
+    })
 }
