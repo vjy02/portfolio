@@ -58,7 +58,7 @@ export const DARK_HORSE_TEAMS = new Set<TeamName>([
   "Morocco",
 ]);
 
-export const DARK_HORSE_ELO_BONUS = 200;
+export const DARK_HORSE_ELO_BONUS = 150;
 
 export const DARK_HORSE_VARIANCE_BY_STAGE: Record<
   "group" | "round_of_32" | "round_of_16" | "quarterfinal" | "semifinal" | "third_place" | "final",

@@ -103,18 +103,13 @@ function poissonSample(lambda: number): number {
     return k - 1;
 }
 
-function predictScore(strength: number, isKnockout: boolean): [number, number] {
+function predictScore(strength: number): [number, number] {
     const AVG_GOALS = 1.25;
-    const lambdaA = Math.max(0.2, AVG_GOALS + strength * 0.9);
-    const lambdaB = Math.max(0.2, AVG_GOALS - strength * 0.9);
+    const lambdaA = Math.max(0.2, AVG_GOALS + strength * 0.65);
+    const lambdaB = Math.max(0.2, AVG_GOALS - strength * 0.65);
 
-    let sA = Math.min(poissonSample(lambdaA), 7);
-    let sB = Math.min(poissonSample(lambdaB), 7);
-
-    if (sA === sB && isKnockout) {
-        if (strength >= 0) sA++;
-        else sB++;
-    }
+    const sA = Math.min(poissonSample(lambdaA), 7);
+    const sB = Math.min(poissonSample(lambdaB), 7);
 
     return [sA, sB];
 }
@@ -122,7 +117,7 @@ function predictScore(strength: number, isKnockout: boolean): [number, number] {
 function predictPenalties(teamA: string, teamB: string, strength: number): string {
     let scoreA = 0;
     let scoreB = 0;
-    const baseChanceA = 0.5 + strength * 0.08;
+    const baseChanceA = 0.5 + strength * 0.03;
 
     for (let i = 0; i < 5; i++) {
         if (Math.random() < baseChanceA) scoreA++;
@@ -183,7 +178,7 @@ export async function POST(req: NextRequest) {
 
     const strength = baseStrength + variance;
 
-    const [scoreA, scoreB] = predictScore(strength, isKnockout);
+    const [scoreA, scoreB] = predictScore(strength);
 
     let winner: string | null = null;
 
@@ -191,10 +186,6 @@ export async function POST(req: NextRequest) {
         if (scoreA === scoreB) {
             winner = predictPenalties(team_a, team_b, strength);
         } else {
-            winner = scoreA > scoreB ? team_a : team_b;
-        }
-    } else {
-        if (scoreA !== scoreB) {
             winner = scoreA > scoreB ? team_a : team_b;
         }
     }
