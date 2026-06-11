@@ -80,7 +80,7 @@ function computeForm(team: string, previousResults: MatchResult[]): number {
             points -= 1 * recencyWeight * (1 / opponentWeight) * TOURNAMENT_MULTIPLIER;
         }
     }
-    return points;
+    return Math.max(-8, Math.min(8, points));
 }
 
 function seededVariance(seed: string): number {
@@ -166,7 +166,7 @@ export async function POST(req: NextRequest) {
     const formB = computeForm(team_b, previous_results);
     const formDiff = (formA - formB) / 25;
 
-    const baseStrength = 0.75 * expectedGoalDiff + 0.25 * formDiff;
+    const baseStrength = 0.85 * expectedGoalDiff + 0.15 * formDiff;
 
     let variance = 0;
     if (isDarkHorseMatch) {
