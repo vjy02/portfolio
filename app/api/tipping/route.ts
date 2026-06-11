@@ -92,20 +92,29 @@ function seededVariance(seed: string): number {
     return ((hash >>> 0) % 1000) / 500 - 1;
 }
 
+function poissonSample(lambda: number): number {
+    const L = Math.exp(-lambda);
+    let k = 0;
+    let p = 1;
+    do {
+        k++;
+        p *= Math.random();
+    } while (p > L);
+    return k - 1;
+}
+
 function predictScore(strength: number): [number, number] {
-    const base = 1.3;
+    const base = 1.35;
 
-    const xGA = base + strength * 0.5;
-    const xGB = base - strength * 0.5;
+    const xGA = Math.max(0.4, base + strength * 0.5);
+    const xGB = Math.max(0.4, base - strength * 0.5);
 
-    const noiseA = (Math.random() - 0.5) * 2.4;
-    const noiseB = (Math.random() - 0.5) * 2.4;
-
-    const sA = Math.min(5, Math.max(0, Math.round(xGA + noiseA)));
-    const sB = Math.min(5, Math.max(0, Math.round(xGB + noiseB)));
+    const sA = Math.min(4, poissonSample(xGA));
+    const sB = Math.min(4, poissonSample(xGB));
 
     return [sA, sB];
 }
+
 function predictPenalties(teamA: string, teamB: string, strength: number): string {
     let scoreA = 0;
     let scoreB = 0;
