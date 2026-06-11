@@ -188,6 +188,8 @@ export async function POST(req: NextRequest) {
         } else {
             winner = scoreA > scoreB ? team_a : team_b;
         }
+    } else if (scoreA !== scoreB) {
+        winner = scoreA > scoreB ? team_a : team_b;
     }
 
     const response: PredictionResponse = {
