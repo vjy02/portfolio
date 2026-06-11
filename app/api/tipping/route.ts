@@ -50,7 +50,7 @@ const KNOCKOUT_STAGES = new Set<Stage>([
 ]);
 
 const AVG_ELO = 1800;
-const TOURNAMENT_MULTIPLIER = 1.5;
+const TOURNAMENT_MULTIPLIER = 1.2; // was 1.5
 
 function computeForm(team: string, previousResults: MatchResult[]): number {
     if (!previousResults.length) return 0;
@@ -70,7 +70,7 @@ function computeForm(team: string, previousResults: MatchResult[]): number {
         const opponentName = isA ? m.team_b : m.team_a;
         const opponentElo = WORLD_CUP_TEAM_ELOS[opponentName as TeamName] ?? AVG_ELO;
 
-        const opponentWeight = Math.pow(opponentElo / AVG_ELO, 2);
+        const opponentWeight = Math.pow(opponentElo / AVG_ELO, 2); // was exponent 2 — review later
 
         if (gf > ga) {
             points += 3 * recencyWeight * opponentWeight * TOURNAMENT_MULTIPLIER;
@@ -80,6 +80,7 @@ function computeForm(team: string, previousResults: MatchResult[]): number {
             points -= 1 * recencyWeight * (1 / opponentWeight) * TOURNAMENT_MULTIPLIER;
         }
     }
+
     return Math.max(-8, Math.min(8, points));
 }
 
@@ -92,7 +93,6 @@ function seededVariance(seed: string): number {
 }
 
 function poissonSample(lambda: number): number {
-    // Knuth algorithm — natural Poisson sampler
     const L = Math.exp(-lambda);
     let k = 0;
     let p = 1;
@@ -108,15 +108,16 @@ function predictScore(strength: number): [number, number] {
     const lambdaA = Math.max(0.3, AVG_GOALS + strength * 0.65);
     const lambdaB = Math.max(0.3, AVG_GOALS - strength * 0.65);
 
-    const sA = Math.min(poissonSample(lambdaA), 5);
+    const sA = Math.min(poissonSample(lambdaA), 5); // was 7
     const sB = Math.min(poissonSample(lambdaB), 5);
+
     return [sA, sB];
 }
 
 function predictPenalties(teamA: string, teamB: string, strength: number): string {
     let scoreA = 0;
     let scoreB = 0;
-    const baseChanceA = 0.5 + strength * 0.06;
+    const baseChanceA = 0.5 + strength * 0.04; // was 0.06
 
     for (let i = 0; i < 5; i++) {
         if (Math.random() < baseChanceA) scoreA++;
@@ -175,7 +176,13 @@ export async function POST(req: NextRequest) {
         variance = seededVariance(seed) * varianceRange;
     }
 
-    const strength = baseStrength + variance;
+    // Strength floor — prevents large favourites from going negative due to variance/form
+    const rawStrength = baseStrength + variance;
+    const strength = baseStrength > 0.4
+        ? Math.max(0.15, rawStrength)
+        : baseStrength < -0.4
+            ? Math.min(-0.15, rawStrength)
+            : rawStrength;
 
     const [scoreA, scoreB] = predictScore(strength);
 
@@ -187,8 +194,10 @@ export async function POST(req: NextRequest) {
         } else {
             winner = scoreA > scoreB ? team_a : team_b;
         }
-    } else if (scoreA !== scoreB) {
-        winner = scoreA > scoreB ? team_a : team_b;
+    } else {
+        if (scoreA !== scoreB) {
+            winner = scoreA > scoreB ? team_a : team_b;
+        }
     }
 
     const response: PredictionResponse = {
@@ -203,7 +212,7 @@ export async function POST(req: NextRequest) {
             "Access-Control-Allow-Methods": "POST, OPTIONS",
             "Access-Control-Allow-Headers": "Content-Type",
         },
-    })
+    });
 }
 
 export async function OPTIONS() {
@@ -213,6 +222,6 @@ export async function OPTIONS() {
             "Access-Control-Allow-Origin": "https://mburton.dev",
             "Access-Control-Allow-Methods": "POST, OPTIONS",
             "Access-Control-Allow-Headers": "Content-Type",
-        }
+        },
     });
 }
