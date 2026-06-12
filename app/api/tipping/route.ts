@@ -50,7 +50,9 @@ const KNOCKOUT_STAGES = new Set<Stage>([
 ]);
 
 const AVG_ELO = 1800;
-const TOURNAMENT_MULTIPLIER = 1.2; // was 1.5
+const TOURNAMENT_MULTIPLIER = 1.15;
+
+/* ---------------- FORM ---------------- */
 
 function computeForm(team: string, previousResults: MatchResult[]): number {
     if (!previousResults.length) return 0;
@@ -64,61 +66,82 @@ function computeForm(team: string, previousResults: MatchResult[]): number {
 
         const recencyWeight = (i + 1) / n;
         const isA = m.team_a === team;
+
         const gf = isA ? m.score_a : m.score_b;
         const ga = isA ? m.score_b : m.score_a;
 
         const opponentName = isA ? m.team_b : m.team_a;
         const opponentElo = WORLD_CUP_TEAM_ELOS[opponentName as TeamName] ?? AVG_ELO;
 
-        const opponentWeight = Math.pow(opponentElo / AVG_ELO, 2); // was exponent 2 — review later
+        const opponentWeight = Math.pow(opponentElo / AVG_ELO, 1.5);
 
         if (gf > ga) {
-            points += 3 * recencyWeight * opponentWeight * TOURNAMENT_MULTIPLIER;
+            points += 3 * recencyWeight * opponentWeight;
         } else if (gf === ga) {
-            points += 1 * recencyWeight * opponentWeight * TOURNAMENT_MULTIPLIER;
+            points += 1 * recencyWeight * opponentWeight;
         } else {
-            points -= 1 * recencyWeight * (1 / opponentWeight) * TOURNAMENT_MULTIPLIER;
+            points -= 1 * recencyWeight * (1 / opponentWeight);
         }
     }
 
-    return Math.max(-8, Math.min(8, points));
+    return Math.max(-6, Math.min(6, points));
 }
+
+/* ---------------- VARIANCE ---------------- */
 
 function seededVariance(seed: string): number {
     let hash = 0;
     for (let i = 0; i < seed.length; i++) {
         hash = (Math.imul(31, hash) + seed.charCodeAt(i)) | 0;
     }
-    return ((hash >>> 0) % 1000) / 500 - 1;
+    return ((hash >>> 0) % 1000) / 500 - 1; // [-1, 1]
 }
+
+/* ---------------- POISSON ---------------- */
 
 function poissonSample(lambda: number): number {
     const L = Math.exp(-lambda);
     let k = 0;
     let p = 1;
+
     do {
         k++;
         p *= Math.random();
     } while (p > L);
+
     return k - 1;
 }
 
+function adjustLambda(x: number): number {
+    return Math.pow(Math.max(0.15, x), 0.92);
+}
+
+/* ---------------- SCORE MODEL ---------------- */
+
 function predictScore(strength: number): [number, number] {
-    const base = 1.35;
+    const base = 1.25;
 
-    const xGA = Math.max(0.4, base + strength * 0.5);
-    const xGB = Math.max(0.4, base - strength * 0.5);
+    const xGA = base + strength;
+    const xGB = base - strength;
 
-    const sA = Math.min(4, poissonSample(xGA));
-    const sB = Math.min(4, poissonSample(xGB));
+    const clamp = (x: number) => Math.min(3.0, Math.max(0.15, x));
+
+    const a = clamp(xGA);
+    const b = clamp(xGB);
+
+    const sA = poissonSample(adjustLambda(a));
+    const sB = poissonSample(adjustLambda(b));
 
     return [sA, sB];
 }
 
+/* ---------------- PENALTIES ---------------- */
+
 function predictPenalties(teamA: string, teamB: string, strength: number): string {
     let scoreA = 0;
     let scoreB = 0;
-    const baseChanceA = 0.5 + strength * 0.04;
+
+    const baseChanceA = 0.5 + strength * 0.03;
 
     for (let i = 0; i < 5; i++) {
         if (Math.random() < baseChanceA) scoreA++;
@@ -135,6 +158,8 @@ function predictPenalties(teamA: string, teamB: string, strength: number): strin
     return scoreA >= scoreB ? teamA : teamB;
 }
 
+/* ---------------- API ---------------- */
+
 export async function POST(req: NextRequest) {
     const payload = (await req.json()) as Payload;
     const { match_id, team_a, team_b, stage, previous_results } = payload;
@@ -147,6 +172,7 @@ export async function POST(req: NextRequest) {
             ratingA === undefined && team_a,
             ratingB === undefined && team_b,
         ].filter(Boolean);
+
         return NextResponse.json(
             { error: `Unknown team(s): ${missing.join(", ")}` },
             { status: 400 }
@@ -154,34 +180,50 @@ export async function POST(req: NextRequest) {
     }
 
     const isKnockout = KNOCKOUT_STAGES.has(stage);
+
     const isDarkHorseA = DARK_HORSE_TEAMS.has(team_a);
     const isDarkHorseB = DARK_HORSE_TEAMS.has(team_b);
-    const isDarkHorseMatch = isDarkHorseA || isDarkHorseB;
 
-    const effectiveRatingA = ratingA + (isDarkHorseA ? DARK_HORSE_ELO_BONUS : 0);
-    const effectiveRatingB = ratingB + (isDarkHorseB ? DARK_HORSE_ELO_BONUS : 0);
+    const effectiveA = ratingA + (isDarkHorseA ? DARK_HORSE_ELO_BONUS : 0);
+    const effectiveB = ratingB + (isDarkHorseB ? DARK_HORSE_ELO_BONUS : 0);
 
-    const diff = effectiveRatingA - effectiveRatingB;
-    const expectedGoalDiff = diff / 400;
+    const diff = effectiveA - effectiveB;
+    const expectedGoalDiff = diff / 450;
 
     const formA = computeForm(team_a, previous_results);
     const formB = computeForm(team_b, previous_results);
-    const formDiff = (formA - formB) / 25;
 
-    const baseStrength = 0.85 * expectedGoalDiff + 0.15 * formDiff;
+    const formDiff = (formA - formB) / 30;
+
+    const baseStrength = 0.8 * expectedGoalDiff + 0.2 * formDiff;
+
+    /* ---------------- VARIANCE FIX ---------------- */
 
     let variance = 0;
-    if (isDarkHorseMatch) {
-        const varianceRange = DARK_HORSE_VARIANCE_BY_STAGE[stage];
+
+    if (isDarkHorseA || isDarkHorseB) {
+        const range = DARK_HORSE_VARIANCE_BY_STAGE[stage] ?? 0.2;
         const seed = match_id ?? `${team_a}-${team_b}-${stage}`;
-        variance = seededVariance(seed) * varianceRange;
+
+        variance = seededVariance(seed) * range * 0.4; // 🔥 nerfed
     }
 
-    const rawStrength = baseStrength + variance;
-    const strength = baseStrength > 0
-        ? Math.max(baseStrength * 0.6, rawStrength)
-        : Math.min(baseStrength * 0.6, rawStrength);
-    const [scoreA, scoreB] = predictScore(strength);
+    const strength = baseStrength + variance;
+
+    /* ---------------- SCORE ---------------- */
+
+    let [scoreA, scoreB] = predictScore(strength);
+
+    /* ---------------- DRAW REALISM ---------------- */
+
+    const drawBias = 0.28;
+
+    if (Math.random() < drawBias && Math.abs(scoreA - scoreB) === 1) {
+        if (Math.random() < 0.5) scoreA = scoreB;
+        else scoreB = scoreA;
+    }
+
+    /* ---------------- WINNER ---------------- */
 
     let winner: string | null = null;
 
@@ -197,19 +239,20 @@ export async function POST(req: NextRequest) {
         }
     }
 
-    const response: PredictionResponse = {
-        predicted_score_a: scoreA,
-        predicted_score_b: scoreB,
-        predicted_winner: winner,
-    };
-
-    return NextResponse.json(response, {
-        headers: {
-            "Access-Control-Allow-Origin": "https://mburton.dev",
-            "Access-Control-Allow-Methods": "POST, OPTIONS",
-            "Access-Control-Allow-Headers": "Content-Type",
+    return NextResponse.json(
+        {
+            predicted_score_a: scoreA,
+            predicted_score_b: scoreB,
+            predicted_winner: winner,
         },
-    });
+        {
+            headers: {
+                "Access-Control-Allow-Origin": "https://mburton.dev",
+                "Access-Control-Allow-Methods": "POST, OPTIONS",
+                "Access-Control-Allow-Headers": "Content-Type",
+            },
+        }
+    );
 }
 
 export async function OPTIONS() {
