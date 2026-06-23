@@ -24,28 +24,46 @@ export const JOB_EXPERIENCES = [
   {
     company: "Canva",
     link: "https://www.canva.com",
-    role: "Software Engineer",
     logo: "/canvalogo.png",
     date: "Feb. 2025 - Present",
-    description:
-      "Helping drive product growth to our B2B focused offerings through feature development and experimentation.",
+    roles: [
+      {
+        title: "Software Engineer",
+        description:
+          "Focusing on enabling our Business and Enterprise users to best use Canva and develop Enterprise wanted features across the product.",
+      },
+      {
+        title: "Associate Software Engineer",
+        description:
+          "Drove monetisation through Canva Teams. Developing, experimenting and productionising features that drove MAU/ARR gains.",
+      },
+    ],
   },
   {
     company: "Elentar",
     link: "https://www.elentar.com",
-    date: "May 2024 - Feb. 2025",
     logo: "/elentarlogo.png",
-    description:
-      "Founding frontend engineer, developed a complex web app dashboard used by national energy distributors to analyse, monitor & generate reports about their renewable energy devices.",
+    date: "May 2024 - Feb. 2025",
+    roles: [
+      {
+        title: "Software Engineer",
+        description:
+          "Founding frontend engineer, developed a web app used by national energy distributors to monitor and analyse their renewable energy devices.",
+      },
+    ],
   },
   {
     company: "Commonwealth Bank",
     link: "https://www.commbank.com.au",
-    role: "Software Engineer Intern",
-    date: "Nov. 2023 - Feb. 2024",
     logo: "/cbalogo.png",
-    description:
-      "Created an automated internal test tool web app from scratch, replacing an old deprecated Java version used by test engineers.",
+    date: "Nov. 2023 - Feb. 2024",
+    roles: [
+      {
+        title: "Software Engineer Intern",
+        description:
+          "Created an automated internal test tool web app from scratch, replacing an old deprecated Java version used by test engineers.",
+      },
+    ],
   },
 ];
 
