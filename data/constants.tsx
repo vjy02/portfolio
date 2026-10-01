@@ -30,12 +30,7 @@ export const JOB_EXPERIENCES = [
       {
         title: "Software Engineer",
         description:
-          "Focusing on enabling our Business and Enterprise users to best use Canva and develop Enterprise wanted features across the product.",
-      },
-      {
-        title: "Associate Software Engineer",
-        description:
-          "Drove monetisation through Canva Teams. Developing, experimenting and productionising features that drove MAU/ARR gains.",
+          "B2B focus on growth, retention and develop Enterprise wanted features across the product.",
       },
     ],
   },
