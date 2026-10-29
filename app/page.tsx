@@ -25,11 +25,10 @@ export default async function Page() {
         <div className="flex flex-col gap-2">
           <h2 className="font-semibold text-lg">hi, i&apos;m Victor Yoshida</h2>
           <p>
-            A <strong>frontend</strong> focused software engineer currently
-            working at <strong>Canva</strong>. Based in{" "}
-            <strong>Melbourne, Australia</strong> with a deep passion for
-            building solutions to problems or tinkering something up just for
-            fun
+            Software engineer currently working at <strong>Canva</strong>. Based
+            in <strong>Melbourne, Australia</strong>. Experience with building
+            end-to-end full stack enterprise software features for millions of
+            users.
           </p>
         </div>
 
