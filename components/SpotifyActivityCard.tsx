@@ -9,8 +9,9 @@ export interface Track {
   artist: string;
 }
 
+// TODO: yeah this isnt working no more, this is the palaceholder for now
 const FALLBACK_TRACK: Track = {
-  songUrl: "https://open.spotify.com/embed/track/3n3Ppam7vgaVa1iaRUc9Lp",
+  songUrl: "https://open.spotify.com/embed/track/2tBaswRea2Mw9eUrDdVtAD",
   imageUrl: "",
   title: "",
   artist: "",
